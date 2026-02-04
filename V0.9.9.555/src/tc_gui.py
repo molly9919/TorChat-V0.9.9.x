@@ -20,6 +20,10 @@
 
 import config
 import wx
+try:
+    import wx.adv as wxadv
+except ImportError:
+    wxadv = wx
 import tc_client
 import sys
 import os
@@ -57,26 +61,26 @@ def getStatusBitmap(status):
     return bitmap
 
 
-class TaskbarIcon(wx.TaskBarIcon):
+class TaskbarIcon(wxadv.TaskBarIcon):
     def __init__(self, main_window):
-        wx.TaskBarIcon.__init__(self)
+        wxadv.TaskBarIcon.__init__(self)
         self.mw = main_window
 
         #load event icon
         img = wx.Image(os.path.join(config.ICON_DIR, "event.png"))
         img.ConvertAlphaToMask()
-        self.event_icon = wx.IconFromBitmap(img.ConvertToBitmap())
+        self.event_icon = wx.Icon(img.ConvertToBitmap())
         self.showStatus(self.mw.buddy_list.own_status)
         self.timer = wx.Timer(self, -1)
         self.blink_phase = False
-        self.Bind(wx.EVT_TASKBAR_LEFT_DOWN, self.onLeftClick)
+        self.Bind(wxadv.EVT_TASKBAR_LEFT_DOWN, self.onLeftClick)
         self.Bind(wx.EVT_TIMER, self.onTimer)
 
     def showEvent(self):
         self.SetIcon(self.event_icon, self.getToolTipText())
 
     def showStatus(self, status):
-        icon = wx.IconFromBitmap(getStatusBitmap(status))
+        icon = wx.Icon(getStatusBitmap(status))
         self.SetIcon(icon, self.getToolTipText())
 
     def onLeftClick(self, evt):
