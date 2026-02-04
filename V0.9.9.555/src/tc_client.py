@@ -434,9 +434,9 @@ class Buddy(object):
                     decname += c.upper()
                 ndx +=1
 
-            return decname.encode("UTF-8")
+            return decname
         else:
-            return self.address.encode("UTF-8") # default to V0.9...
+            return self.address # default to V0.9...
 
     def sendFile(self, filename, gui_callback):
         sender = FileSender(self, filename, gui_callback)
@@ -619,7 +619,7 @@ class Buddy(object):
             line = self.profile_address
         else:
             line = self.profile_address + " (" + self.name + ")"
-        return line.encode("UTF-8")
+        return line
 
 
 class BuddyList(object):
