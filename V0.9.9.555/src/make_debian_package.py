@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 import os
 import version
@@ -14,7 +14,7 @@ Section: internet
 Priority: optional
 Architecture: all
 Essential: no
-Depends: tor, python (>= 2.5), python (<< 3.0), python-wxgtk3.0
+Depends: tor, python3 (>= 3.8), python3-wxgtk4.0
 Maintainer: Haxxie       <haxxie@safe-mail.net>
 Provides: tor.chat
 Description: Secure Instant Messenger for Tor
@@ -145,10 +145,12 @@ args=$*
 
 echo "trying to find suitable python version"
 
-tryStartWith "python2"
-tryStartWith "python2.7"
-tryStartWith "python2.6"
-tryStartWith "python2.5"
+tryStartWith "python3"
+tryStartWith "python3.12"
+tryStartWith "python3.11"
+tryStartWith "python3.10"
+tryStartWith "python3.9"
+tryStartWith "python3.8"
 
 echo "no suitable python version found, you need one of them listed above"
 """
