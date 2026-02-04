@@ -10,89 +10,89 @@
 #                                                                            #
 ##############################################################################
 
-LANGUAGE_CODE = u"hu"
-LANGUAGE_NAME = u"Magyar"
-LANGUAGE_NAME_ENGLISH = u"Hungarian"
-TRANSLATOR_NAMES = [u"d4n3sz"]
+LANGUAGE_CODE = "hu"
+LANGUAGE_NAME = "Magyar"
+LANGUAGE_NAME_ENGLISH = "Hungarian"
+TRANSLATOR_NAMES = ["d4n3sz"]
 
 #buttons
-BTN_CANCEL = u"Mégse"
-BTN_OK = u"Ok"
-BTN_SAVE_AS = u"Mentés másként..."
-BTN_CLOSE = u"Bezár"
+BTN_CANCEL = "Mégse"
+BTN_OK = "Ok"
+BTN_SAVE_AS = "Mentés másként..."
+BTN_CLOSE = "Bezár"
 
 #status
-ST_AVAILABLE = u"Elérhető"
-ST_AWAY = u"Rögtön jövök"
-ST_EXTENDED_AWAY = u"Nincs a gépnél"
-ST_OFFLINE = u"Kapcsolat nélkül"
+ST_AVAILABLE = "Elérhető"
+ST_AWAY = "Rögtön jövök"
+ST_EXTENDED_AWAY = "Nincs a gépnél"
+ST_OFFLINE = "Kapcsolat nélkül"
 
 #TaskbarMenu
-MTB_SHOW_HIDE_TORCHAT = u"Mutat/Rejt TorChat"
-MTB_QUIT = u"Kilépés"
+MTB_SHOW_HIDE_TORCHAT = "Mutat/Rejt TorChat"
+MTB_QUIT = "Kilépés"
 
 #popup menu
-MPOP_CHAT = u"Chat..."
-MPOP_SEND_FILE = u"Fájl küldés..."
-MPOP_EDIT_CONTACT = u"Partner szerkesztése..."
-MPOP_DELETE_CONTACT = u"Partner törlése..."
-MPOP_SHOW_OFFLINE_MESSAGES = u"Offline ki küldött üzenetek mutatása"
-MPOP_CLEAR_OFFLINE_MESSAGES = u"Offline kiküldött üzenetek törlése"
+MPOP_CHAT = "Chat..."
+MPOP_SEND_FILE = "Fájl küldés..."
+MPOP_EDIT_CONTACT = "Partner szerkesztése..."
+MPOP_DELETE_CONTACT = "Partner törlése..."
+MPOP_SHOW_OFFLINE_MESSAGES = "Offline ki küldött üzenetek mutatása"
+MPOP_CLEAR_OFFLINE_MESSAGES = "Offline kiküldött üzenetek törlése"
 # MPOP_ACTIVATE_LOG = u"Activate logging to file"
 # MPOP_STOP_LOG = u"Stop logging"
 # MPOP_DELETE_EXISTING_LOG = u"Delete existing log file"
 # MPOP_DELETE_AND_STOP_LOG = u"Delete log and stop logging"
-MPOP_ADD_CONTACT = u"Partner hozzáadása..."
-MPOP_ABOUT = u"A TorChat-ról"
-MPOP_TIPJAR = u"TorChat Bitcoin Tip-Jar"
-MPOP_ASK_AUTHOR = u"Kérdezd %s..."
-MPOP_SETTINGS = u"Beállítások..."
+MPOP_ADD_CONTACT = "Partner hozzáadása..."
+MPOP_ABOUT = "A TorChat-ról"
+MPOP_TIPJAR = "TorChat Bitcoin Tip-Jar"
+MPOP_ASK_AUTHOR = "Kérdezd %s..."
+MPOP_SETTINGS = "Beállítások..."
 # MPOP_EDIT_MY_PROFILE = u"Edit my profile..."
 
 #chat window popup menu
-CPOP_COPY = u"Másolás"
+CPOP_COPY = "Másolás"
 
 #confirm delete message box
-D_CONFIRM_DELETE_TITLE = u"Törlés megerősítése"
-D_CONFIRM_DELETE_MESSAGE = u"Valóban törölni akarod?\n(%s %s)"
+D_CONFIRM_DELETE_TITLE = "Törlés megerősítése"
+D_CONFIRM_DELETE_MESSAGE = "Valóban törölni akarod?\n(%s %s)"
 
 #warning about log
-D_LOG_WARNING_TITLE = u"TorChat: Logolás aktív"
-D_LOG_WARNING_MESSAGE = u"Logolás mentése fájlba bekapcsolva!\n\nLog Fájl: %s\n\nNe felejtsd el törölni a log fájlt, ha befejezted a hibakeresést,mert személyes információkat is tartalmazhat."
+D_LOG_WARNING_TITLE = "TorChat: Logolás aktív"
+D_LOG_WARNING_MESSAGE = "Logolás mentése fájlba bekapcsolva!\n\nLog Fájl: %s\n\nNe felejtsd el törölni a log fájlt, ha befejezted a hibakeresést,mert személyes információkat is tartalmazhat."
 
 #warning about used port
-D_WARN_USED_PORT_TITLE = u"TorChat: A port már használatban van"
-D_WARN_USED_PORT_MESSAGE = u"Valószínűleg már egy másik TorChat fut itt:  %s:%s. Csinálj egy másik profilt más porttal, hogy el tudj indítani egy másik TorChat-et!"
+D_WARN_USED_PORT_TITLE = "TorChat: A port már használatban van"
+D_WARN_USED_PORT_MESSAGE = "Valószínűleg már egy másik TorChat fut itt:  %s:%s. Csinálj egy másik profilt más porttal, hogy el tudj indítani egy másik TorChat-et!"
 
 # #warning about unread messages
-D_WARN_UNREAD_TITLE = u"TorChat: Olvasatlan üzenet"
-D_WARN_UNREAD_MESSAGE = u"Olvasatlan üzeneted van.\nEl fog veszni véglegesen!\n\nBiztosan ki akarsz lépni a TorChat-ból?"
+D_WARN_UNREAD_TITLE = "TorChat: Olvasatlan üzenet"
+D_WARN_UNREAD_MESSAGE = "Olvasatlan üzeneted van.\nEl fog veszni véglegesen!\n\nBiztosan ki akarsz lépni a TorChat-ból?"
 
 #warning about offline buddy
-D_WARN_BUDDY_OFFLINE_TITLE = u"TorChat: Partner nincs kapcsolódva"
-D_WARN_BUDDY_OFFLINE_MESSAGE = u"Ezt a műveleted nem lehet végrehajtani kapcsolat nélküli partnerrel"
+D_WARN_BUDDY_OFFLINE_TITLE = "TorChat: Partner nincs kapcsolódva"
+D_WARN_BUDDY_OFFLINE_MESSAGE = "Ezt a műveleted nem lehet végrehajtani kapcsolat nélküli partnerrel"
 
 #warning about multiple files
-D_WARN_FILE_ONLY_ONE_TITLE = u"TorChat: Sok fájl"
-D_WARN_FILE_ONLY_ONE_MESSAGE = u"Nem tudsz egyszerre több fájlt küldeni. Küldd el a fájlokat egyenként, vagy használj tömörítést (pl. zip)"
+D_WARN_FILE_ONLY_ONE_TITLE = "TorChat: Sok fájl"
+D_WARN_FILE_ONLY_ONE_MESSAGE = "Nem tudsz egyszerre több fájlt küldeni. Küldd el a fájlokat egyenként, vagy használj tömörítést (pl. zip)"
 
 #warning about file save error
-D_WARN_FILE_SAVE_ERROR_TITLE = u"TorChat: Hiba a fájl mentése közben"
-D_WARN_FILE_SAVE_ERROR_MESSAGE = u"A '%s' fájl létrehozása sikertelen.\n\n%s"
+D_WARN_FILE_SAVE_ERROR_TITLE = "TorChat: Hiba a fájl mentése közben"
+D_WARN_FILE_SAVE_ERROR_MESSAGE = "A '%s' fájl létrehozása sikertelen.\n\n%s"
 
 #warning about file already exists
-D_WARN_FILE_ALREADY_EXISTS_TITLE = u"TorChat: A fájl már létezik"
-D_WARN_FILE_ALREADY_EXISTS_MESSAGE = u"A '%s' már létezik.\nFelülírod?"
+D_WARN_FILE_ALREADY_EXISTS_TITLE = "TorChat: A fájl már létezik"
+D_WARN_FILE_ALREADY_EXISTS_MESSAGE = "A '%s' már létezik.\nFelülírod?"
 
 #dialog: add/edit contact
-DEC_TITLE_ADD = u"Új partner hozzáadása"
-DEC_TITLE_EDIT = u"Partner szerkesztése"
-DEC_TORCHAT_ID = u"TorChat azonosító"
-DEC_DISPLAY_NAME = u"Megjelenített név"
-DEC_INTRODUCTION = u"Bemutatkozás"
-DEC_MSG_16_CHARACTERS = u"Az azonosító 16 or 56 karakter hosszú lehet, nem %i."
-DEC_MSG_ONLY_ALPANUM = u"Az azonosító csak számokat és az angol abc betüit tartalmazhatja"
-DEC_MSG_ALREADY_ON_LIST = u"%s már a listádban van"
+DEC_TITLE_ADD = "Új partner hozzáadása"
+DEC_TITLE_EDIT = "Partner szerkesztése"
+DEC_TORCHAT_ID = "TorChat azonosító"
+DEC_DISPLAY_NAME = "Megjelenített név"
+DEC_INTRODUCTION = "Bemutatkozás"
+DEC_MSG_16_CHARACTERS = "Az azonosító 16 or 56 karakter hosszú lehet, nem %i."
+DEC_MSG_ONLY_ALPANUM = "Az azonosító csak számokat és az angol abc betüit tartalmazhatja"
+DEC_MSG_ALREADY_ON_LIST = "%s már a listádban van"
 
 # #dialog: edit my profile
 # DEP_TITLE = u"Edit my profile"
@@ -108,10 +108,10 @@ DEC_MSG_ALREADY_ON_LIST = u"%s már a listádban van"
 # DEP_WARN_MUST_BE_PNG = u"The avatar must be a .png file"
 
 #file transfer window
-DFT_FILE_OPEN_TITLE = u"Fájl küldése %s számára"
-DFT_FILE_SAVE_TITLE = u"Fájl mentése %s-től"
-DFT_SEND = u"Külédes %s\n %s-nak\n%04.1f%% (%i kész %i bájtból)"
-DFT_RECEIVE = u"Fogadás  %s\n %s-től\n%04.1f%% (%i kész %i bájtból)"
+DFT_FILE_OPEN_TITLE = "Fájl küldése %s számára"
+DFT_FILE_SAVE_TITLE = "Fájl mentése %s-től"
+DFT_SEND = "Külédes %s\n %s-nak\n%04.1f%% (%i kész %i bájtból)"
+DFT_RECEIVE = "Fogadás  %s\n %s-től\n%04.1f%% (%i kész %i bájtból)"
 # DFT_WAITING = u"waiting for connection"
 # DFT_STARTING = u"starting transfer"
 # DFT_ABORTED = u"transfer aborted"
@@ -119,36 +119,36 @@ DFT_RECEIVE = u"Fogadás  %s\n %s-től\n%04.1f%% (%i kész %i bájtból)"
 # DFT_ERROR = u"error"
 
 #settings dialaog
-DSET_TITLE = u"TorChat beállítások"
-DSET_NET_TITLE = u"Hálózat"
-DSET_NET_ACTIVE = u"aktív"
-DSET_NET_INACTIVE = u"inaktív"
-DSET_NET_TOR_ADDRESS = u"Tor proxy cím"
-DSET_NET_TOR_SOCKS = u"Socks port"
-DSET_NET_TOR_CONTROL = u"Control port"
-DSET_NET_OWN_HOSTNAME = u"Saját TorChat-azonosító"
-DSET_NET_LISTEN_INTERFACE = u"Figyelő cím"
-DSET_NET_LISTEN_PORT = u"Figyelő port"
-DSET_GUI_TITLE = u"Felhasználói felület"
-DSET_GUI_LANGUAGE = u"Nyelv"
-DSET_GUI_OPEN_MAIN_HIDDEN = u"Indítás minimalizált ablakkal"
-DSET_GUI_OPEN_CHAT_HIDDEN = u"Ne nyisson automatikusan új ablakokat"
-DSET_GUI_NOTIFICATION_POPUP = u"Felugró figyelmeztetések"
+DSET_TITLE = "TorChat beállítások"
+DSET_NET_TITLE = "Hálózat"
+DSET_NET_ACTIVE = "aktív"
+DSET_NET_INACTIVE = "inaktív"
+DSET_NET_TOR_ADDRESS = "Tor proxy cím"
+DSET_NET_TOR_SOCKS = "Socks port"
+DSET_NET_TOR_CONTROL = "Control port"
+DSET_NET_OWN_HOSTNAME = "Saját TorChat-azonosító"
+DSET_NET_LISTEN_INTERFACE = "Figyelő cím"
+DSET_NET_LISTEN_PORT = "Figyelő port"
+DSET_GUI_TITLE = "Felhasználói felület"
+DSET_GUI_LANGUAGE = "Nyelv"
+DSET_GUI_OPEN_MAIN_HIDDEN = "Indítás minimalizált ablakkal"
+DSET_GUI_OPEN_CHAT_HIDDEN = "Ne nyisson automatikusan új ablakokat"
+DSET_GUI_NOTIFICATION_POPUP = "Felugró figyelmeztetések"
 # DSET_GUI_NOTIFICATION_METHOD = u"Notification method"
-DSET_GUI_FLASH_WINDOW = u"Ablak címének villogtatása új üzenet érkezésekor"
-DSET_MISC_TITLE = u"Egyebek"
-DSET_MISC_TEMP_IN_DATA = u"Ideiglenes fájlok tárolása a saját könyvtárban"
-DSET_MISC_TEMP_CUSTOM_DIR = u"Ideiglenes könyvtár (ha üres, akkor az op.rendszer alapértelmezett könyvtára)"
+DSET_GUI_FLASH_WINDOW = "Ablak címének villogtatása új üzenet érkezésekor"
+DSET_MISC_TITLE = "Egyebek"
+DSET_MISC_TEMP_IN_DATA = "Ideiglenes fájlok tárolása a saját könyvtárban"
+DSET_MISC_TEMP_CUSTOM_DIR = "Ideiglenes könyvtár (ha üres, akkor az op.rendszer alapértelmezett könyvtára)"
 
 #notices in the chat window (those in square brackets)
-NOTICE_DELAYED_MSG_WAITING = u"várakozó üzenetek küldése"
-NOTICE_DELAYED_MSG_SENT = u"várakozó üzenetek elküldve"
-NOTICE_DELAYED = u"várakozik/késleltetett"
+NOTICE_DELAYED_MSG_WAITING = "várakozó üzenetek küldése"
+NOTICE_DELAYED_MSG_SENT = "várakozó üzenetek elküldve"
+NOTICE_DELAYED = "várakozik/késleltetett"
 
 #messagebox for offline messages
-MSG_OFFLINE_TITLE = u"TorChat: várakozó üzenetek"
-MSG_OFFLINE_EMPTY = u"nincs (több) várakozó üzenet %s felöl"
-MSG_OFFLINE_QUEUED = u"várakozó offline üzenet %s felöl:\n\n%s"
+MSG_OFFLINE_TITLE = "TorChat: várakozó üzenetek"
+MSG_OFFLINE_EMPTY = "nincs (több) várakozó üzenet %s felöl"
+MSG_OFFLINE_QUEUED = "várakozó offline üzenet %s felöl:\n\n%s"
 
 # #buddy list mouse hover popup
 # BPOP_BUDDY_IS_OFFLINE = u"Buddy is offline"
@@ -181,8 +181,8 @@ MSG_OFFLINE_QUEUED = u"várakozó offline üzenet %s felöl:\n\n%s"
 
 
 #TipJar box
-TIPJAR_TITLE = u"TorChat Bitcoin Tip-Jar"
-TIPJAR_TEXT = u" "" Please Help support future development and maintenance of TorChat  \
+TIPJAR_TITLE = "TorChat Bitcoin Tip-Jar"
+TIPJAR_TEXT = " "" Please Help support future development and maintenance of TorChat  \
 \
     Bitcoin tip-jar:  -- %(tipjar)s -- \
 \
@@ -193,8 +193,8 @@ Copy the TorChat Bitcoin Tip-Jar address to the clipboard?\
 "" "
 
 #about box
-ABOUT_TITLE = u"A TorChat-ról"
-ABOUT_TEXT = u" ""TorChat %(version)s (svn: r%(svn)s)\
+ABOUT_TITLE = "A TorChat-ról"
+ABOUT_TEXT = " ""TorChat %(version)s (svn: r%(svn)s)\
   %(copyright)s\
 \
 Runtime environment:\

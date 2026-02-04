@@ -1,12 +1,12 @@
-import lang_en
-import lang_bg
-import lang_de
-import lang_fr
-import lang_hu
-import lang_it
-import lang_nl
-import lang_pl
-import lang_pt
-import lang_ru
-import lang_sv
-import lang_zh
+from . import lang_en
+from . import lang_bg
+from . import lang_de
+from . import lang_fr
+from . import lang_hu
+from . import lang_it
+from . import lang_nl
+from . import lang_pl
+from . import lang_pt
+from . import lang_ru
+from . import lang_sv
+from . import lang_zh

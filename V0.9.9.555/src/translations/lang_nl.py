@@ -10,42 +10,42 @@
 #                                                                            #
 ##############################################################################
 
-LANGUAGE_CODE = u"nl"
-LANGUAGE_NAME = u"Nederlands"
-LANGUAGE_NAME_ENGLISH = u"Dutch"
-TRANSLATOR_NAMES = [u"2by3"]
+LANGUAGE_CODE = "nl"
+LANGUAGE_NAME = "Nederlands"
+LANGUAGE_NAME_ENGLISH = "Dutch"
+TRANSLATOR_NAMES = ["2by3"]
 
 #buttons
-BTN_CANCEL = u"Annuleren"
-BTN_OK = u"Ok"
-BTN_SAVE_AS = u"Opslaan als..."
-BTN_CLOSE = u"Sluiten"
+BTN_CANCEL = "Annuleren"
+BTN_OK = "Ok"
+BTN_SAVE_AS = "Opslaan als..."
+BTN_CLOSE = "Sluiten"
 
 #status
-ST_AVAILABLE = u"Aanwezig"
-ST_AWAY = u"Afwezig"
-ST_EXTENDED_AWAY = u"Langdurig afwezig"
-ST_OFFLINE = u"Offline"
+ST_AVAILABLE = "Aanwezig"
+ST_AWAY = "Afwezig"
+ST_EXTENDED_AWAY = "Langdurig afwezig"
+ST_OFFLINE = "Offline"
 
 #TaskbarMenu
-MTB_SHOW_HIDE_TORCHAT = u"Toon/Verberg TorChat"
-MTB_QUIT = u"Sluiten"
+MTB_SHOW_HIDE_TORCHAT = "Toon/Verberg TorChat"
+MTB_QUIT = "Sluiten"
 
 #popup menu
-MPOP_CHAT = u"Chat..."
-MPOP_SEND_FILE = u"Verzend bestand..."
-MPOP_EDIT_CONTACT = u"Bewerk contactpersoon..."
-MPOP_DELETE_CONTACT = u"Verwijder contact..."
-MPOP_SHOW_OFFLINE_MESSAGES = u"Toon Offline berichten in wacht"
-MPOP_CLEAR_OFFLINE_MESSAGES = u"Schoon Offline berichten in wacht"
+MPOP_CHAT = "Chat..."
+MPOP_SEND_FILE = "Verzend bestand..."
+MPOP_EDIT_CONTACT = "Bewerk contactpersoon..."
+MPOP_DELETE_CONTACT = "Verwijder contact..."
+MPOP_SHOW_OFFLINE_MESSAGES = "Toon Offline berichten in wacht"
+MPOP_CLEAR_OFFLINE_MESSAGES = "Schoon Offline berichten in wacht"
 # MPOP_ACTIVATE_LOG = u"Activate logging to file"
 # MPOP_STOP_LOG = u"Stop logging"
 # MPOP_DELETE_EXISTING_LOG = u"Delete existing log file"
 # MPOP_DELETE_AND_STOP_LOG = u"Delete log and stop logging"
-MPOP_ADD_CONTACT = u"Contactpersoon toevoegen..."
-MPOP_ABOUT = u"Over TorChat"
-MPOP_TIPJAR = u"TorChat Bitcoin Tip-Jar"
-MPOP_ASK_AUTHOR = u"Vraag %s..."
+MPOP_ADD_CONTACT = "Contactpersoon toevoegen..."
+MPOP_ABOUT = "Over TorChat"
+MPOP_TIPJAR = "TorChat Bitcoin Tip-Jar"
+MPOP_ASK_AUTHOR = "Vraag %s..."
 # MPOP_SETTINGS = u"Settings..."
 # MPOP_EDIT_MY_PROFILE = u"Edit my profile..."
 
@@ -53,20 +53,20 @@ MPOP_ASK_AUTHOR = u"Vraag %s..."
 # CPOP_COPY = u"Copy"
 
 #confirm delete message box
-D_CONFIRM_DELETE_TITLE = u"Bevestig verwijderen"
-D_CONFIRM_DELETE_MESSAGE = u"Weet u zeker dat u deze contactpersoon wilt verwijderen?\n(%s %s)"
+D_CONFIRM_DELETE_TITLE = "Bevestig verwijderen"
+D_CONFIRM_DELETE_MESSAGE = "Weet u zeker dat u deze contactpersoon wilt verwijderen?\n(%s %s)"
 
 #warning about log
-D_LOG_WARNING_TITLE = u"TorChat: Logboek ingeschakeld"
-D_LOG_WARNING_MESSAGE = u"Logging naar bestand is geactiveerd!\n\nLog bestand: %s\n\nVergeet niet het logbestand te verwijderen na het debuggen, deze kan gevoellige informatie bevatten"
+D_LOG_WARNING_TITLE = "TorChat: Logboek ingeschakeld"
+D_LOG_WARNING_MESSAGE = "Logging naar bestand is geactiveerd!\n\nLog bestand: %s\n\nVergeet niet het logbestand te verwijderen na het debuggen, deze kan gevoellige informatie bevatten"
 
 # #warning about used port
 # D_WARN_USED_PORT_TITLE = u"TorChat: Port already in use"
 # D_WARN_USED_PORT_MESSAGE = u"Something, probably another TorChat instance, is already listening at %s:%s. You must create another profile using different ports to be able to start TorChat a second time."
 
 # #warning about unread messages
-D_WARN_UNREAD_TITLE = u"TorChat: Ongelezen berichten"
-D_WARN_UNREAD_MESSAGE = u"Er zijn ongelezen berichten.\nDeze zullen verloren gaan!\n\nWeet u zeker dat u TorChat wilt sluiten?"
+D_WARN_UNREAD_TITLE = "TorChat: Ongelezen berichten"
+D_WARN_UNREAD_MESSAGE = "Er zijn ongelezen berichten.\nDeze zullen verloren gaan!\n\nWeet u zeker dat u TorChat wilt sluiten?"
 
 #warning about offline buddy
 # D_WARN_BUDDY_OFFLINE_TITLE = u"TorChat: Buddy is offline"
@@ -85,14 +85,14 @@ D_WARN_UNREAD_MESSAGE = u"Er zijn ongelezen berichten.\nDeze zullen verloren gaa
 # D_WARN_FILE_ALREADY_EXISTS_MESSAGE = u"The file '%s' already exists.\nOverwrite it?"
 
 #dialog: add/edit contact
-DEC_TITLE_ADD = u"Contactpersoon toevoegen"
-DEC_TITLE_EDIT = u"Bewerk contactpersoon"
-DEC_TORCHAT_ID = u"TorChat ID"
-DEC_DISPLAY_NAME = u"Weergave naam"
-DEC_INTRODUCTION = u"Introductie"
-DEC_MSG_16_CHARACTERS = u"Het adres dient 16 or 56 karakters lang te zijn, niet %i."
-DEC_MSG_ONLY_ALPANUM = u"Het adres kan alleen cijfers en kleine letters bevatten."
-DEC_MSG_ALREADY_ON_LIST = u"%s staat al in uw lijst."
+DEC_TITLE_ADD = "Contactpersoon toevoegen"
+DEC_TITLE_EDIT = "Bewerk contactpersoon"
+DEC_TORCHAT_ID = "TorChat ID"
+DEC_DISPLAY_NAME = "Weergave naam"
+DEC_INTRODUCTION = "Introductie"
+DEC_MSG_16_CHARACTERS = "Het adres dient 16 or 56 karakters lang te zijn, niet %i."
+DEC_MSG_ONLY_ALPANUM = "Het adres kan alleen cijfers en kleine letters bevatten."
+DEC_MSG_ALREADY_ON_LIST = "%s staat al in uw lijst."
 
 # #dialog: edit my profile
 # DEP_TITLE = u"Edit my profile"
@@ -110,8 +110,8 @@ DEC_MSG_ALREADY_ON_LIST = u"%s staat al in uw lijst."
 #file transfer window
 # DFT_FILE_OPEN_TITLE = u"Send file to %s"
 # DFT_FILE_SAVE_TITLE = u"Save file from %s"
-DFT_SEND = u"Verzenden %s\nnaar %s\n%04.1f%% (%i van %i bytes)"
-DFT_RECEIVE = u"Ontvangen %s\nvan %s\n%04.1f%% (%i van %i bytes)"
+DFT_SEND = "Verzenden %s\nnaar %s\n%04.1f%% (%i van %i bytes)"
+DFT_RECEIVE = "Ontvangen %s\nvan %s\n%04.1f%% (%i van %i bytes)"
 # DFT_WAITING = u"waiting for connection"
 # DFT_STARTING = u"starting transfer"
 # DFT_ABORTED = u"transfer aborted"
@@ -141,9 +141,9 @@ DFT_RECEIVE = u"Ontvangen %s\nvan %s\n%04.1f%% (%i van %i bytes)"
 # DSET_MISC_TEMP_CUSTOM_DIR = u"Temporary directory (leave empty for OS-default)"
 
 #notices in the chat window (those in square brackets)
-NOTICE_DELAYED_MSG_WAITING = u"vertraagde berichten, wachtend om verzonden te worden"
-NOTICE_DELAYED_MSG_SENT = u"vertraagde berichten zijn verzonden"
-NOTICE_DELAYED = u"vertraagd"
+NOTICE_DELAYED_MSG_WAITING = "vertraagde berichten, wachtend om verzonden te worden"
+NOTICE_DELAYED_MSG_SENT = "vertraagde berichten zijn verzonden"
+NOTICE_DELAYED = "vertraagd"
 
 # #messagebox for offline messages
 # MSG_OFFLINE_TITLE = u"TorChat: queued messages"
@@ -182,8 +182,8 @@ NOTICE_DELAYED = u"vertraagd"
 
 
 #TipJar box
-TIPJAR_TITLE = u"TorChat Bitcoin Tip-Jar"
-TIPJAR_TEXT = u" "" Please Help support future development and maintenance of TorChat  \
+TIPJAR_TITLE = "TorChat Bitcoin Tip-Jar"
+TIPJAR_TEXT = " "" Please Help support future development and maintenance of TorChat  \
 \
     Bitcoin tip-jar:  -- %(tipjar)s -- \
 \
@@ -194,8 +194,8 @@ Copy the TorChat Bitcoin Tip-Jar address to the clipboard?\
 "" "
 
 #about box
-ABOUT_TITLE = u"Over TorChat"
-ABOUT_TEXT = u"""TorChat %(version)s (svn: r%(svn)s)\
+ABOUT_TITLE = "Over TorChat"
+ABOUT_TEXT = """TorChat %(version)s (svn: r%(svn)s)\
   %(copyright)s\
 \
 Runtime environment:\

@@ -381,7 +381,7 @@ class PopupMenu(wx.Menu):
         # of the Buddy in tc_client.py
         for window in self.mw.chat_windows:
             if window.buddy == self.buddy:
-                print "found"
+                print("found")
                 return window
 
         #must open a hidden window
@@ -801,14 +801,14 @@ class BuddyList(wx.ListCtrl):
     def loadOwnAvatarData(self):
         file_name = os.path.join(config.getDataDir(), "avatar.png")
         if os.path.exists(file_name):
-            print "(2) reading own avatar file %s" % file_name
+            print("(2) reading own avatar file %s" % file_name)
             image = wx.Image(file_name, wx.BITMAP_TYPE_PNG)
             image.Rescale(64, 64, wx.IMAGE_QUALITY_HIGH)
             self.bl.own_avatar_data = image.GetData()
-            print "(2) uncompressed image data: %i bytes" % len(self.bl.own_avatar_data)
+            print("(2) uncompressed image data: %i bytes" % len(self.bl.own_avatar_data))
             if image.HasAlpha():
                 self.bl.own_avatar_data_alpha = image.GetAlphaData()
-                print "(2) uncompressed aplha data: %i bytes" % len(self.bl.own_avatar_data_alpha)
+                print("(2) uncompressed aplha data: %i bytes" % len(self.bl.own_avatar_data_alpha))
             else:
                 self.bl.own_avatar_data_alpha = ""
             for buddy in self.bl.list:
@@ -825,7 +825,7 @@ class BuddyList(wx.ListCtrl):
     def blinkBuddy(self, buddy, blink=True):
         name = buddy.getDisplayName()
         offlineMsg = buddy.getOfflineMessages()
-        for index in xrange(0, self.GetItemCount()):
+        for index in range(0, self.GetItemCount()):
             if name == self.GetItemText(index):
             
                 if blink and not offlineMsg:                   
@@ -875,7 +875,7 @@ class BuddyList(wx.ListCtrl):
             self.closeToolTip()
 
     def closeToolTip(self):
-        if self.tool_tip <> None:
+        if self.tool_tip != None:
             self.tool_tip.Hide()
             self.tool_tip.Destroy()
             self.tool_tip = None
@@ -892,7 +892,7 @@ class BuddyList(wx.ListCtrl):
 
     def onDClick(self, evt):
         i = self.GetFirstSelected()
-        if i <> -1:
+        if i != -1:
             address = str(self.GetItemText(i)[0:16]) # might be OK to use first 16 of the 56 in a display
             laddress = address.lower()
             for buddy in self.bl.list:
@@ -964,7 +964,7 @@ class BuddyList(wx.ListCtrl):
                 break
 
         # if a tooltip for this buddy is currently shown then refresh it
-        if self.tool_tip <> None and index == self.tool_tip_index:
+        if self.tool_tip != None and index == self.tool_tip_index:
             self.openToolTip(index)
 
     def onBuddyProfileChanged(self, buddy):
@@ -986,16 +986,16 @@ class BuddyList(wx.ListCtrl):
             self.openToolTip(index)
 
     def onBuddyAvatarChanged(self, buddy):
-        print "(2) converting %s avatar data into wx.Bitmap" % buddy.address
+        print("(2) converting %s avatar data into wx.Bitmap" % buddy.address)
         try:
             image = wx.ImageFromData(64, 64, buddy.profile_avatar_data)
             if buddy.profile_avatar_data_alpha:
-                print "(2) %s avatar has alpha channel" % buddy.address
+                print("(2) %s avatar has alpha channel" % buddy.address)
                 image.SetAlphaData(buddy.profile_avatar_data_alpha)
             buddy.profile_avatar_object = wx.BitmapFromImage(image)
 
         except:
-            print "(2)  could not convert %s avatar data to wx.Bitmap" % buddy.address
+            print("(2)  could not convert %s avatar data to wx.Bitmap" % buddy.address)
             tb()
 
         # notify the chat window
@@ -1007,7 +1007,7 @@ class BuddyList(wx.ListCtrl):
         # if a tooltip for this buddy is currently shown then refresh it
         line = buddy.getDisplayName()
         index = self.FindItem(0, line)
-        if self.tool_tip <> None and index == self.tool_tip_index:
+        if self.tool_tip != None and index == self.tool_tip_index:
             self.openToolTip(index)
 
     def onListChanged(self):
@@ -1018,7 +1018,7 @@ class BuddyList(wx.ListCtrl):
         # TODO: This whole method seems a bit ugly
 
         # remove items which are not in list anymore
-        for index in xrange(0, self.GetItemCount()):
+        for index in range(0, self.GetItemCount()):
             found = False
             for buddy in self.bl.list:
                 if buddy.getDisplayName() == self.GetItemText(index):
@@ -1034,18 +1034,18 @@ class BuddyList(wx.ListCtrl):
             line = buddy.getDisplayName()
             index = self.FindItem(0, line)
             if index == -1:
-                index = self.InsertImageStringItem(sys.maxint, line, self.il_idx[tc_client.STATUS_OFFLINE])
+                index = self.InsertImageStringItem(sys.maxsize, line, self.il_idx[tc_client.STATUS_OFFLINE])
                 self.SetColumnWidth(0, wx.LIST_AUTOSIZE)
                 self.onBuddyStatusChanged(buddy)
 
     def onMouse(self, evt):
         self.has_mouse = True
         self.last_mouse_time = time.time()
-        if self.tool_tip <> None:
+        if self.tool_tip != None:
             index, flags = self.HitTest(self.ScreenToClient(wx.GetMousePosition()))
             if index == -1:
                 self.closeToolTip()
-            elif index <> self.tool_tip_index:
+            elif index != self.tool_tip_index:
                 self.openToolTip(index)
             else:
                 self.tool_tip.setPos(wx.GetMousePosition())
@@ -1077,7 +1077,7 @@ class BuddyToolTip(wx.PopupWindow):
         sizer = wx.BoxSizer()
         self.panel.SetSizer(sizer)
 
-        if self.buddy.profile_avatar_object <> None:
+        if self.buddy.profile_avatar_object != None:
             bitmap = self.buddy.profile_avatar_object
         else:
             bitmap = wx.Bitmap(os.path.join(config.ICON_DIR, "torchat.png"), wx.BITMAP_TYPE_PNG)
@@ -1085,12 +1085,12 @@ class BuddyToolTip(wx.PopupWindow):
         sizer.Add(self.avatar, 0, wx.ALL, 5)
 
         name = self.buddy.name
-        if self.buddy.profile_name <> u"":
+        if self.buddy.profile_name != "":
             name = self.buddy.profile_name
 
         text =  "%s\n%s" % (self.buddy.profile_address, name)
 
-        if self.buddy.profile_text != u"":
+        if self.buddy.profile_text != "":
             text = "%s\n\n%s" % (text, textwrap.fill(self.buddy.profile_text, 30))
 
         if self.buddy.conn_in:
@@ -1298,9 +1298,11 @@ class ChatWindow(wx.Frame):
         wx.CallAfter(self.workaroundScrollBug)
 
     def insertBackLogContents(self, file_name):
-        file = open(file_name)
+        file = open(file_name, "rb")
         for line in file:
-            self.writeHintLine(line.rstrip().decode("UTF-8"))
+            if isinstance(line, bytes):
+                line = line.decode("UTF-8", "replace")
+            self.writeHintLine(line.rstrip())
         file.close()
 
     def insertBackLog(self):
@@ -1333,25 +1335,25 @@ class ChatWindow(wx.Frame):
 
     def updateTitle(self):
         if self.unread == 1:
-            title = u"* "
+            title = "* "
         elif self.unread > 1:
-            title = u"*[%i] " % self.unread
+            title = "*[%i] " % self.unread
         else:
-            title = u""
+            title = ""
 
-        if self.buddy.name == u"":
+        if self.buddy.name == "":
             title += self.buddy.profile_address
         else:
             title += self.buddy.name
 #            title += u" (%s)" % self.buddy.address #MW - reads better in windows
 
 #       config.getProfileName returns either a name (if set) or "myself" (default)
-        self.SetTitle(title + u" \u21d2 %s" % config.getProfileName())
+        self.SetTitle(title + " \u21d2 %s" % config.getProfileName())
 
     def getTitleShort(self):
         t = self.GetTitle() # Grab current window title
 #        return t[:-19]     # no longer works as hard-coded trim.
-        s = t.split(u"\u21d2")  #MW - much cleaner
+        s = t.split("\u21d2")  #MW - much cleaner
         return s[0]
 
     def workaroundScrollBug(self):
@@ -1452,7 +1454,7 @@ class ChatWindow(wx.Frame):
     def onKey(self, evt):
         #TODO: in wine there is/was a problem with shift-enter. Is this fixed now?
         #TODO: There was an unconfirmed report that the enter key would not work at all in Windows 7, is this true?
-        print "(3) key pressed: %i" % evt.GetKeyCode() # debug the windows 7 problem
+        print("(3) key pressed: %i" % evt.GetKeyCode()) # debug the windows 7 problem
         if evt.GetKeyCode() == wx.WXK_RETURN and not evt.ShiftDown():
             self.onSend(evt)
         else:
@@ -1648,33 +1650,33 @@ class ChatWindow(wx.Frame):
     def log(self, msg):
         file_name = os.path.join(config.getDataDir(), "%s.log" % self.buddy.address)
         if not os.path.exists(file_name):
-            f = open(file_name, "w")
-            os.chmod(file_name, 0600)
-            f.write(("**** " + lang.LOG_HEADER + os.linesep + os.linesep).encode("UTF-8"))
-            f.write(("* " + lang.LOG_HEADER1 + os.linesep ).encode("UTF-8"))
-            f.write(("* " + lang.LOG_HEADER2 + os.linesep ).encode("UTF-8"))
-            f.write(("* " + lang.LOG_HEADER3 + os.linesep ).encode("UTF-8"))
-            f.write(("* " + lang.LOG_HEADER4 + os.linesep ).encode("UTF-8"))
-            f.write(("* " + lang.LOG_HEADER5 + os.linesep ).encode("UTF-8"))
-            f.write(("* " + lang.LOG_HEADER6 + os.linesep ).encode("UTF-8"))
-            f.write(("* " + lang.LOG_HEADER7 + os.linesep ).encode("UTF-8"))
-            f.write(("* " + lang.LOG_HEADER8 + os.linesep + os.linesep).encode("UTF-8"))
-            f.write(("**** " + lang.LOG_HEADER + os.linesep + os.linesep).encode("UTF-8"))
-            f.write(("* " + lang.LOG_HEADERQ1 + os.linesep ).encode("UTF-8"))
-            f.write(("* " + lang.LOG_HEADERQ2 + os.linesep ).encode("UTF-8"))
-            f.write(("* " + lang.LOG_HEADERQ3 + os.linesep ).encode("UTF-8"))
-            f.write(("* " + lang.LOG_HEADERQ4 + os.linesep ).encode("UTF-8"))
-            f.write(("* " + lang.LOG_HEADERQ5 + os.linesep ).encode("UTF-8"))
-            f.write(("* " + lang.LOG_HEADERQ6 + os.linesep ).encode("UTF-8"))
-            f.write(("* " + lang.LOG_HEADERQ7 + os.linesep ).encode("UTF-8"))
-            f.write(("* " + lang.LOG_HEADERQ8 + os.linesep ).encode("UTF-8"))
-            f.write(("* " + lang.LOG_HEADERQ9 + os.linesep + os.linesep).encode("UTF-8"))
-            f.write(("**** " + lang.LOG_HEADER + os.linesep + os.linesep).encode("UTF-8"))
+            f = open(file_name, "w", encoding="utf-8")
+            os.chmod(file_name, 0o600)
+            f.write("**** " + lang.LOG_HEADER + os.linesep + os.linesep)
+            f.write("* " + lang.LOG_HEADER1 + os.linesep)
+            f.write("* " + lang.LOG_HEADER2 + os.linesep)
+            f.write("* " + lang.LOG_HEADER3 + os.linesep)
+            f.write("* " + lang.LOG_HEADER4 + os.linesep)
+            f.write("* " + lang.LOG_HEADER5 + os.linesep)
+            f.write("* " + lang.LOG_HEADER6 + os.linesep)
+            f.write("* " + lang.LOG_HEADER7 + os.linesep)
+            f.write("* " + lang.LOG_HEADER8 + os.linesep + os.linesep)
+            f.write("**** " + lang.LOG_HEADER + os.linesep + os.linesep)
+            f.write("* " + lang.LOG_HEADERQ1 + os.linesep)
+            f.write("* " + lang.LOG_HEADERQ2 + os.linesep)
+            f.write("* " + lang.LOG_HEADERQ3 + os.linesep)
+            f.write("* " + lang.LOG_HEADERQ4 + os.linesep)
+            f.write("* " + lang.LOG_HEADERQ5 + os.linesep)
+            f.write("* " + lang.LOG_HEADERQ6 + os.linesep)
+            f.write("* " + lang.LOG_HEADERQ7 + os.linesep)
+            f.write("* " + lang.LOG_HEADERQ8 + os.linesep)
+            f.write("* " + lang.LOG_HEADERQ9 + os.linesep + os.linesep)
+            f.write("**** " + lang.LOG_HEADER + os.linesep + os.linesep)
         else:
-            f = open(file_name, "a")
+            f = open(file_name, "a", encoding="utf-8")
 
         if msg != "":
-            f.write((msg + os.linesep).encode("UTF-8"))
+            f.write(msg + os.linesep)
             self.mw.buddy_list.own_buddy.dpstatus="7"
             self.buddy.dpstatus="7"
         f.close()
@@ -1692,19 +1694,17 @@ class BetterFileDropTarget(wx.FileDropTarget):
             #sometimes the file name is in utf8
             #but inside a unicode string!
             #TODO: must report this bug to wx
-            print "(2) dropped file not found with dropped file_name, trying UTF-8 hack"
+            print("(2) dropped file not found with dropped file_name, trying UTF-8 hack")
             try:
-                file_name_utf8 = ""
-                for c in file_name:
-                    file_name_utf8 += chr(ord(c))
-                file_name = file_name_utf8.decode("utf-8")
+                file_name_utf8_bytes = bytes([ord(c) for c in file_name])
+                file_name = file_name_utf8_bytes.decode("utf-8")
             except:
                 tb()
                 wx.MessageBox("there is a strange bug in wx for your platform with wx.FileDropTarget and non-ascii characters in file names")
                 return None
         # --- end evil hack
 
-        print "(2) file dropped: %s" % file_name
+        print("(2) file dropped: %s" % file_name)
         return file_name
 
 
@@ -1740,9 +1740,9 @@ class DropTarget(BetterFileDropTarget):
             # find the buddy
             buddy = self.mw.gui_bl.getBuddyFromXY((x,y))
             if buddy:
-                print "(2) file dropped at buddy %s" % buddy.address
+                print("(2) file dropped at buddy %s" % buddy.address)
             else:
-                print "(2) file dropped on empty space, ignoring"
+                print("(2) file dropped on empty space, ignoring")
                 return
 
         FileTransferWindow(self.mw, buddy, file_name)
@@ -1759,7 +1759,7 @@ class AvatarDropTarget(BetterFileDropTarget):
             return
 
         root, ext = os.path.splitext(file_name)
-        if ext.lower() <> ".png":
+        if ext.lower() != ".png":
             wx.MessageBox(lang.DEP_WARN_MUST_BE_PNG, lang.DEP_WARN_TITLE)
             return
 

@@ -27,13 +27,13 @@ import textwrap
 # should be available when GTK+ is installed
 def notificationWindow_gtknotify(mw, name, text, buddy):
     import pynotify
-    import cgi
+    import html
     if not pynotify.is_initted():
         if not pynotify.init('torchat'):
             raise Exception('gtknotify not supported')
     pynotify.Notification(
-        cgi.escape(name).encode('ascii', 'xmlcharrefreplace'), 
-        cgi.escape(text).encode('ascii', 'xmlcharrefreplace')
+        html.escape(name),
+        html.escape(text),
     ).show()
 
 
@@ -71,8 +71,8 @@ def notificationWindow_xosd(mw, name, text, buddy):
 class NotificationWindowXosd(threading.Thread):
     def __init__(self, mw, name, text, buddy):
         threading.Thread.__init__(self)
-        self.name = name.encode("utf-8")
-        self.text = text.encode("utf-8")
+        self.name = name
+        self.text = text
         
     def run(self):    
         import pyosd
@@ -101,7 +101,7 @@ class NotificationWindowGeneric(wx.Frame):
         sizer = wx.BoxSizer()
         self.panel.SetSizer(sizer)
 
-        if buddy.profile_avatar_object <> None:
+        if buddy.profile_avatar_object != None:
             bitmap = buddy.profile_avatar_object
         else:
             bitmap = wx.Bitmap(os.path.join(config.ICON_DIR, "torchat.png"), wx.BITMAP_TYPE_PNG)
@@ -185,15 +185,15 @@ def notificationWindow(mw, name, text, buddy):
     try:
         function = globals()["notificationWindow_%s" % method]
     except:
-        print "(1) notification method '%s' is not implemented, falling back to 'generic'." % method
+        print("(1) notification method '%s' is not implemented, falling back to 'generic'." % method)
         notificationWindow_generic(mw, name, text, buddy)
         return
     
     try:
         function(mw, name, text, buddy)
     except:
-        print "(1) exception while using notification method '%s'" % method
-        print "(1) falling back to 'generic'. Traceback follows:"
+        print("(1) exception while using notification method '%s'" % method)
+        print("(1) falling back to 'generic'. Traceback follows:")
         config.tb()
         notificationWindow_generic(mw, name, text, buddy)
 

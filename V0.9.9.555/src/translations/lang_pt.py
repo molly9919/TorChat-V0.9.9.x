@@ -10,89 +10,89 @@
 #                                                                            #
 ##############################################################################
 
-LANGUAGE_CODE = u"pt"
-LANGUAGE_NAME = u"Português"
-LANGUAGE_NAME_ENGLISH = u"Portuguese"
-TRANSLATOR_NAMES = [u"Marc Young mycbx@lavabit.com"]
+LANGUAGE_CODE = "pt"
+LANGUAGE_NAME = "Português"
+LANGUAGE_NAME_ENGLISH = "Portuguese"
+TRANSLATOR_NAMES = ["Marc Young mycbx@lavabit.com"]
 
 #buttons
-BTN_CANCEL = u"Cancelar"
-BTN_OK = u"Ok"
-BTN_SAVE_AS = u"Salvar como..."
-BTN_CLOSE = u"Fechar"
+BTN_CANCEL = "Cancelar"
+BTN_OK = "Ok"
+BTN_SAVE_AS = "Salvar como..."
+BTN_CLOSE = "Fechar"
 
 #status
-ST_AVAILABLE = u"Disponível"
-ST_AWAY = u"Longe"
-ST_EXTENDED_AWAY = u"Longe por mais tempo"
-ST_OFFLINE = u"Desligado"
+ST_AVAILABLE = "Disponível"
+ST_AWAY = "Longe"
+ST_EXTENDED_AWAY = "Longe por mais tempo"
+ST_OFFLINE = "Desligado"
 
 #TaskbarMenu
-MTB_SHOW_HIDE_TORCHAT = u"Mostrar/Esconder o TorChat"
-MTB_QUIT = u"Sair"
+MTB_SHOW_HIDE_TORCHAT = "Mostrar/Esconder o TorChat"
+MTB_QUIT = "Sair"
 
 #popup menu
-MPOP_CHAT = u"Bate-papo..."
-MPOP_SEND_FILE = u"Enviar arquivo..."
-MPOP_EDIT_CONTACT = u"Editar contato..."
-MPOP_DELETE_CONTACT = u"Deletar contato..."
-MPOP_SHOW_OFFLINE_MESSAGES = u"Mostrar mensagens offline enfileiradas"
-MPOP_CLEAR_OFFLINE_MESSAGES = u"Limpar mensagens offline enfileiradas"
+MPOP_CHAT = "Bate-papo..."
+MPOP_SEND_FILE = "Enviar arquivo..."
+MPOP_EDIT_CONTACT = "Editar contato..."
+MPOP_DELETE_CONTACT = "Deletar contato..."
+MPOP_SHOW_OFFLINE_MESSAGES = "Mostrar mensagens offline enfileiradas"
+MPOP_CLEAR_OFFLINE_MESSAGES = "Limpar mensagens offline enfileiradas"
 # MPOP_ACTIVATE_LOG = u"Activate logging to file"
 # MPOP_STOP_LOG = u"Stop logging"
 # MPOP_DELETE_EXISTING_LOG = u"Delete existing log file"
 # MPOP_DELETE_AND_STOP_LOG = u"Delete log and stop logging"
-MPOP_ADD_CONTACT = u"Adicionar contato..."
-MPOP_ABOUT = u"Sobre o TorChat"
-MPOP_TIPJAR = u"TorChat Bitcoin Tip-Jar"
-MPOP_ASK_AUTHOR = u"Perguntar ao %s..."
-MPOP_SETTINGS = u"Configurações..."
+MPOP_ADD_CONTACT = "Adicionar contato..."
+MPOP_ABOUT = "Sobre o TorChat"
+MPOP_TIPJAR = "TorChat Bitcoin Tip-Jar"
+MPOP_ASK_AUTHOR = "Perguntar ao %s..."
+MPOP_SETTINGS = "Configurações..."
 # MPOP_EDIT_MY_PROFILE = u"Edit my profile..."
 
 #chat window popup menu
-CPOP_COPY = u"Copiar"
+CPOP_COPY = "Copiar"
 
 #confirm delete message box
-D_CONFIRM_DELETE_TITLE = u"Confirmar exclusão"
-D_CONFIRM_DELETE_MESSAGE = u"Realmente deletar este contato?\n(%s %s)"
+D_CONFIRM_DELETE_TITLE = "Confirmar exclusão"
+D_CONFIRM_DELETE_MESSAGE = "Realmente deletar este contato?\n(%s %s)"
 
 #warning about log
-D_LOG_WARNING_TITLE = u"TorChat: O Arquivo de registros(Log) está ativo"
-D_LOG_WARNING_MESSAGE = u"Arquivo de registros(Log) ativado!\n\nArquivo de registros: %s\n\nLembrar de deletar o arquivo de registros se você terminou de eliminar os erros(debugging) porque o arquivo de registros pode conter informações sensíveis."
+D_LOG_WARNING_TITLE = "TorChat: O Arquivo de registros(Log) está ativo"
+D_LOG_WARNING_MESSAGE = "Arquivo de registros(Log) ativado!\n\nArquivo de registros: %s\n\nLembrar de deletar o arquivo de registros se você terminou de eliminar os erros(debugging) porque o arquivo de registros pode conter informações sensíveis."
 
 #warning about used port
-D_WARN_USED_PORT_TITLE = u"TorChat: Porta em uso "
-D_WARN_USED_PORT_MESSAGE = u"Algo, provavelmente outra intância do TorChat já está escutando pela porta %s:%s. Você deve criar outro perfil usando diferentes portas para ser possível iniciar o TorChat uma segunda vez."
+D_WARN_USED_PORT_TITLE = "TorChat: Porta em uso "
+D_WARN_USED_PORT_MESSAGE = "Algo, provavelmente outra intância do TorChat já está escutando pela porta %s:%s. Você deve criar outro perfil usando diferentes portas para ser possível iniciar o TorChat uma segunda vez."
 
 # #warning about unread messages
-D_WARN_UNREAD_TITLE = u"TorChat: Mensagens não lidas"
-D_WARN_UNREAD_MESSAGE = u"Essas mensagens não foram lidas.\nElas serão perdidas para sempre!\n\nVocê realmente quer sair do TorChat agora?"
+D_WARN_UNREAD_TITLE = "TorChat: Mensagens não lidas"
+D_WARN_UNREAD_MESSAGE = "Essas mensagens não foram lidas.\nElas serão perdidas para sempre!\n\nVocê realmente quer sair do TorChat agora?"
 
 #warning about offline buddy
-D_WARN_BUDDY_OFFLINE_TITLE = u"TorChat: Esse amigo está desligado"
-D_WARN_BUDDY_OFFLINE_MESSAGE = u"Essa operação não é possível com amigos desligados"
+D_WARN_BUDDY_OFFLINE_TITLE = "TorChat: Esse amigo está desligado"
+D_WARN_BUDDY_OFFLINE_MESSAGE = "Essa operação não é possível com amigos desligados"
 
 #warning about multiple files
-D_WARN_FILE_ONLY_ONE_TITLE = u"TorChat: Múltiplos arquivos"
-D_WARN_FILE_ONLY_ONE_MESSAGE = u"Você não pode iniciar a tranferência de arquivos múltiplos usando uma única operação. Inicie transferências uma de cada vez ou ao invés disso envie um arquivo zip."
+D_WARN_FILE_ONLY_ONE_TITLE = "TorChat: Múltiplos arquivos"
+D_WARN_FILE_ONLY_ONE_MESSAGE = "Você não pode iniciar a tranferência de arquivos múltiplos usando uma única operação. Inicie transferências uma de cada vez ou ao invés disso envie um arquivo zip."
 
 #warning about file save error
-D_WARN_FILE_SAVE_ERROR_TITLE = u"TorChat: Erro ao salvar arquivo"
-D_WARN_FILE_SAVE_ERROR_MESSAGE = u"O arquivo '%s' não pôde ser criado.\n\n%s"
+D_WARN_FILE_SAVE_ERROR_TITLE = "TorChat: Erro ao salvar arquivo"
+D_WARN_FILE_SAVE_ERROR_MESSAGE = "O arquivo '%s' não pôde ser criado.\n\n%s"
 
 #warning about file already exists
-D_WARN_FILE_ALREADY_EXISTS_TITLE = u"TorChat: O arquivo existe"
-D_WARN_FILE_ALREADY_EXISTS_MESSAGE = u"O arquivo '%s' já existe.\nSobrescrevê-lo?"
+D_WARN_FILE_ALREADY_EXISTS_TITLE = "TorChat: O arquivo existe"
+D_WARN_FILE_ALREADY_EXISTS_MESSAGE = "O arquivo '%s' já existe.\nSobrescrevê-lo?"
 
 #dialog: add/edit contact
-DEC_TITLE_ADD = u"Adicionar novo contato"
-DEC_TITLE_EDIT = u"Editar contato"
-DEC_TORCHAT_ID = u"TorChat ID"
-DEC_DISPLAY_NAME = u"Nome aparente(display name)"
-DEC_INTRODUCTION = u"Introdução"
-DEC_MSG_16_CHARACTERS = u"O endereço deve ter 16 or 56 caracteres, não %i."
-DEC_MSG_ONLY_ALPANUM = u"O endereço deve conter apenas números e letras minúsculas"
-DEC_MSG_ALREADY_ON_LIST = u"%s já está na sua lista"
+DEC_TITLE_ADD = "Adicionar novo contato"
+DEC_TITLE_EDIT = "Editar contato"
+DEC_TORCHAT_ID = "TorChat ID"
+DEC_DISPLAY_NAME = "Nome aparente(display name)"
+DEC_INTRODUCTION = "Introdução"
+DEC_MSG_16_CHARACTERS = "O endereço deve ter 16 or 56 caracteres, não %i."
+DEC_MSG_ONLY_ALPANUM = "O endereço deve conter apenas números e letras minúsculas"
+DEC_MSG_ALREADY_ON_LIST = "%s já está na sua lista"
 
 # #dialog: edit my profile
 # DEP_TITLE = u"Edit my profile"
@@ -108,10 +108,10 @@ DEC_MSG_ALREADY_ON_LIST = u"%s já está na sua lista"
 # DEP_WARN_MUST_BE_PNG = u"The avatar must be a .png file"
 
 #file transfer window
-DFT_FILE_OPEN_TITLE = u"Enviar arquivo para %s"
-DFT_FILE_SAVE_TITLE = u"Salvar arquivo de %s"
-DFT_SEND = u"Enviando %s\npara %s\n%04.1f%% (%i de %i bytes)"
-DFT_RECEIVE = u"Recebendo %s\nde %s\n%04.1f%% (%i de %i bytes)"
+DFT_FILE_OPEN_TITLE = "Enviar arquivo para %s"
+DFT_FILE_SAVE_TITLE = "Salvar arquivo de %s"
+DFT_SEND = "Enviando %s\npara %s\n%04.1f%% (%i de %i bytes)"
+DFT_RECEIVE = "Recebendo %s\nde %s\n%04.1f%% (%i de %i bytes)"
 # DFT_WAITING = u"waiting for connection"
 # DFT_STARTING = u"starting transfer"
 # DFT_ABORTED = u"transfer aborted"
@@ -119,36 +119,36 @@ DFT_RECEIVE = u"Recebendo %s\nde %s\n%04.1f%% (%i de %i bytes)"
 # DFT_ERROR = u"error"
 
 #settings dialaog
-DSET_TITLE = u"Configuração do TorChat"
-DSET_NET_TITLE = u"Rede"
-DSET_NET_ACTIVE = u"ativo"
-DSET_NET_INACTIVE = u"inativo"
-DSET_NET_TOR_ADDRESS = u"Endereço de proxy do Tor"
-DSET_NET_TOR_SOCKS = u"Porta Socks"
-DSET_NET_TOR_CONTROL = u"Porta de Controle"
-DSET_NET_OWN_HOSTNAME = u"Meu próprio TorChat-ID"
-DSET_NET_LISTEN_INTERFACE = u"Interface de escuta"
-DSET_NET_LISTEN_PORT = u"Porta de Escuta"
-DSET_GUI_TITLE = u"Interface do usuário"
-DSET_GUI_LANGUAGE = u"Língua"
-DSET_GUI_OPEN_MAIN_HIDDEN = u"Iniciar com a janela principal minimizada"
-DSET_GUI_OPEN_CHAT_HIDDEN = u"Não abrir novas janelas automáticamente"
-DSET_GUI_NOTIFICATION_POPUP = u"Pop-up de notificação"
+DSET_TITLE = "Configuração do TorChat"
+DSET_NET_TITLE = "Rede"
+DSET_NET_ACTIVE = "ativo"
+DSET_NET_INACTIVE = "inativo"
+DSET_NET_TOR_ADDRESS = "Endereço de proxy do Tor"
+DSET_NET_TOR_SOCKS = "Porta Socks"
+DSET_NET_TOR_CONTROL = "Porta de Controle"
+DSET_NET_OWN_HOSTNAME = "Meu próprio TorChat-ID"
+DSET_NET_LISTEN_INTERFACE = "Interface de escuta"
+DSET_NET_LISTEN_PORT = "Porta de Escuta"
+DSET_GUI_TITLE = "Interface do usuário"
+DSET_GUI_LANGUAGE = "Língua"
+DSET_GUI_OPEN_MAIN_HIDDEN = "Iniciar com a janela principal minimizada"
+DSET_GUI_OPEN_CHAT_HIDDEN = "Não abrir novas janelas automáticamente"
+DSET_GUI_NOTIFICATION_POPUP = "Pop-up de notificação"
 # DSET_GUI_NOTIFICATION_METHOD = u"Notification method"
-DSET_GUI_FLASH_WINDOW = u"Janela rápida quando chegar uma nova mensagem"
-DSET_MISC_TITLE = u"Variado"
-DSET_MISC_TEMP_IN_DATA = u"Armazenar arquivos temporários no diretório de dados"
-DSET_MISC_TEMP_CUSTOM_DIR = u"Diretório temporário (deixar vazio para OS-padrão)"
+DSET_GUI_FLASH_WINDOW = "Janela rápida quando chegar uma nova mensagem"
+DSET_MISC_TITLE = "Variado"
+DSET_MISC_TEMP_IN_DATA = "Armazenar arquivos temporários no diretório de dados"
+DSET_MISC_TEMP_CUSTOM_DIR = "Diretório temporário (deixar vazio para OS-padrão)"
 
 #notices in the chat window (those in square brackets)
-NOTICE_DELAYED_MSG_WAITING = u"mensagens atrazadas estão esperando para serem enviadas"
-NOTICE_DELAYED_MSG_SENT = u"as mensagens atrazadas foram enviadas"
-NOTICE_DELAYED = u"atrazada"
+NOTICE_DELAYED_MSG_WAITING = "mensagens atrazadas estão esperando para serem enviadas"
+NOTICE_DELAYED_MSG_SENT = "as mensagens atrazadas foram enviadas"
+NOTICE_DELAYED = "atrazada"
 
 #messagebox for offline messages
-MSG_OFFLINE_TITLE = u"TorChat: mensagens não lidas"
-MSG_OFFLINE_EMPTY = u"essas não são (mais) mensagens enfileiradas para %s"
-MSG_OFFLINE_QUEUED = u"mensagens enfileiradas offline para %s:\n\n%s"
+MSG_OFFLINE_TITLE = "TorChat: mensagens não lidas"
+MSG_OFFLINE_EMPTY = "essas não são (mais) mensagens enfileiradas para %s"
+MSG_OFFLINE_QUEUED = "mensagens enfileiradas offline para %s:\n\n%s"
 
 # #buddy list mouse hover popup
 # BPOP_BUDDY_IS_OFFLINE = u"Buddy is offline"
@@ -182,8 +182,8 @@ MSG_OFFLINE_QUEUED = u"mensagens enfileiradas offline para %s:\n\n%s"
 
 
 #TipJar box
-TIPJAR_TITLE = u"TorChat Bitcoin Tip-Jar"
-TIPJAR_TEXT = u" "" Please Help support future development and maintenance of TorChat  \
+TIPJAR_TITLE = "TorChat Bitcoin Tip-Jar"
+TIPJAR_TEXT = " "" Please Help support future development and maintenance of TorChat  \
 \
     Bitcoin tip-jar:  -- %(tipjar)s -- \
 \
@@ -194,8 +194,8 @@ Copy the TorChat Bitcoin Tip-Jar address to the clipboard?\
 "" "
 
 #about box
-ABOUT_TITLE = u"Sobre o TorChat"
-ABOUT_TEXT = u"""TorChat %(version)s (svn: r%(svn)s)\
+ABOUT_TITLE = "Sobre o TorChat"
+ABOUT_TEXT = """TorChat %(version)s (svn: r%(svn)s)\
   %(copyright)s\
 \
 Ambiente Runtime:\

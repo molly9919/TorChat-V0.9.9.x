@@ -17,7 +17,7 @@
 import sys, os
 #import locale
 import numbers
-import ConfigParser
+import configparser
 import config
 #import traceback
 #import inspect
@@ -77,14 +77,14 @@ def findex(index):
         return '999999'
 
 
-class OrderedRawBConfigParser(ConfigParser.RawConfigParser):
+class OrderedRawBConfigParser(configparser.RawConfigParser):
     def __init__(self, defaults = None):
-        ConfigParser.RawConfigParser.__init__(self, defaults = None)
+        configparser.RawConfigParser.__init__(self, defaults = None)
 
     def write(self, fp):
         """Write an .ini-format representation of the configuration state."""
         if self._defaults:
-            fp.write("[%s]\n" % ConfigParser.DEFAULTSECT)
+            fp.write("[%s]\n" % configparser.DEFAULTSECT)
             for key in sorted(self._defaults):
                 fp.write( "%s = %s\n" % (key, str(self._defaults[key]).replace('\n', '\n\t')))
             fp.write("\n")
@@ -108,22 +108,22 @@ def initBuddyConfig():
 def readConfig():
     #remove the BOM (notepad saves with BOM)
     if os.path.exists(buddy_file_name):
-        f = file(buddy_file_name,'r+b')
+        f = open(buddy_file_name, "r+b")
         try:
             header = f.read(3)
-            if header == "\xef\xbb\xbf":
-                print "found UTF8 BOM in buddy-list.ini, removing it"
+            if header == b"\xef\xbb\xbf":
+                print("found UTF8 BOM in buddy-list.ini, removing it")
                 f.seek(0)
-                f.write("\x20\x0d\x0a")
+                f.write(b"\x20\x0d\x0a")
         except:
             pass
         f.close()
 
     try:
         buddy_config.read(buddy_file_name)
-    except ConfigParser.MissingSectionHeaderError:
-        print ""
-        print "*** buddy-list.ini must be saved as UTF-8 ***"
+    except configparser.MissingSectionHeaderError:
+        print("")
+        print("*** buddy-list.ini must be saved as UTF-8 ***")
         sys.exit()
 
     #try to read all known options once. This will add
@@ -133,7 +133,7 @@ def readConfig():
 
 def writeConfig():
     fp = open(buddy_file_name, "w")
-    os.chmod(buddy_file_name, 0600)
+    os.chmod(buddy_file_name, 0o600)
     buddy_config.write(fp)
     fp.close()
 
@@ -144,13 +144,14 @@ def get(section, option):
         value = bconfig_defaults[section, option]
         bset(section, option, value)
     value = buddy_config.get(section, option)
-    if type(value) == str:
+    if isinstance(value, bytes):
         try:
             value = value.decode("UTF-8")
-            value = value.rstrip(" \"'").lstrip(" \"'")
         except:
-            print "***  file buddy-list.ini is not UTF-8    ***"
-            print "*** this will most likely break things   ***"
+            print("***  file buddy-list.ini is not UTF-8    ***")
+            print("*** this will most likely break things   ***")
+    if isinstance(value, str):
+        value = value.rstrip(" \"'").lstrip(" \"'")
     elif type(value) == int:
         value = str(value)
     elif type(value) == float:
@@ -166,15 +167,16 @@ def getWithDefault(section, option, defaultValue):
     if not buddy_config.has_option(section, option):
         return defaultValue
     value = buddy_config.get(section, option)
-    if type(value) == str:
+    if isinstance(value, bytes):
         try:
             value = value.decode("UTF-8")
-            value = value.rstrip(" \"'").lstrip(" \"'")
             if value == "":
                 return defaultValue
         except:
-            print "***  file buddy-list.ini is not UTF-8    ***"
-            print "*** this will most likely break things   ***"
+            print("***  file buddy-list.ini is not UTF-8    ***")
+            print("*** this will most likely break things   ***")
+    if isinstance(value, str):
+        value = value.rstrip(" \"'").lstrip(" \"'")
     elif type(value) == int:
         value = str(value)
     elif type(value) == float:
@@ -198,8 +200,8 @@ def bset(section, option, value):
         buddy_config.add_section(section)
     if type(value) == bool:
         value = int(value)
-    if type(value) == unicode:
-        value = value.encode("UTF-8")
+    if isinstance(value, bytes):
+        value = value.decode("UTF-8", "replace")
     buddy_config.set(section, option, value)
     writeConfig()
 

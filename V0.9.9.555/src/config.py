@@ -18,7 +18,7 @@
 
 import sys, os
 import locale
-import ConfigParser
+import configparser
 import traceback
 import inspect
 import translations
@@ -106,19 +106,19 @@ def toUnicode(unknownstr):
     # Note: it seems none of these strings I have come across so far
     # was ever encoded in the console encoding, they all seem to use
     # the locale encoding.
-    if isinstance(unknownstr, str):
-        return unknownstr.decode(LOCALE_ENC)
+    if isinstance(unknownstr, bytes):
+        return unknownstr.decode(LOCALE_ENC, "replace")
     else:
         return unknownstr
 
-TIP_JAR = u"1AXTMR9TWSg91DQVPjx6YLafm2b7dDNyi6"  # 0.9.9.554/555
-TIP_JAR_09556 = u"1NGL8eNNPx7E6MWJqmGjUUWZ5GHhEKMBq7"  # 0.9.9.556
-TIP_JAR_09557 = u"18rF2p6BYppF2qoCt5Yx7vFUp7srPmWhc4"  # 0.9.9.557
-TIP_JAR_09558 = u"1AZF2zeMdF76BRc7AumewkV6vpYEcpqSbD"  # 0.9.9.558
-TIP_JAR_09559 = u"1JvbYoEsAEmzYbxzqUDkbRtN1BawnQiMnQ"  # 0.9.9.559
-TIP_JAR_09560 = u"15mupK8ZCwJu1gVAH3ZpBSRJMMcBCqdntm"  # 0.9.9.560
+TIP_JAR = "1AXTMR9TWSg91DQVPjx6YLafm2b7dDNyi6"  # 0.9.9.554/555
+TIP_JAR_09556 = "1NGL8eNNPx7E6MWJqmGjUUWZ5GHhEKMBq7"  # 0.9.9.556
+TIP_JAR_09557 = "18rF2p6BYppF2qoCt5Yx7vFUp7srPmWhc4"  # 0.9.9.557
+TIP_JAR_09558 = "1AZF2zeMdF76BRc7AumewkV6vpYEcpqSbD"  # 0.9.9.558
+TIP_JAR_09559 = "1JvbYoEsAEmzYbxzqUDkbRtN1BawnQiMnQ"  # 0.9.9.559
+TIP_JAR_09560 = "15mupK8ZCwJu1gVAH3ZpBSRJMMcBCqdntm"  # 0.9.9.560
 
-COPYRIGHT = u"""
+COPYRIGHT = """
 Copyright (c) 2014-2019  M. Weigand  <doctortor@use.startmail.com> 
 TorChat is a maintenance release of Bernd Kreuß's Original TorChat  
 """
@@ -152,13 +152,13 @@ def killProcess(pid):
             handle = ctypes.windll.kernel32.OpenProcess(PROCESS_TERMINATE, #@UndefinedVariable
                                                         False,
                                                         pid)
-            print handle
+            print(handle)
             ctypes.windll.kernel32.TerminateProcess(handle, -1) #@UndefinedVariable
             ctypes.windll.kernel32.CloseHandle(handle) #@UndefinedVariable
         else:
             os.kill(pid, 15)
     except:
-        print "(1) could not kill process %i" % pid
+        print("(1) could not kill process %i" % pid)
         tb()
 
 
@@ -227,11 +227,11 @@ def getDataDir():
     for filename in os.listdir(data_dir):
         if os.path.isfile(filename):
             # old log files still lying around in the data folder
-            os.chmod(os.path.join(data_dir, filename), 0600)
-    os.chmod(data_dir, 0700)
-    os.chmod(data_dir_tor, 0700)
-    os.chmod(os.path.join(data_dir_tor, tor_exe), 0700)
-    os.chmod(os.path.join(data_dir_tor, "torrc.txt"), 0600)
+            os.chmod(os.path.join(data_dir, filename), 0o600)
+    os.chmod(data_dir, 0o700)
+    os.chmod(data_dir_tor, 0o700)
+    os.chmod(os.path.join(data_dir_tor, tor_exe), 0o700)
+    os.chmod(os.path.join(data_dir_tor, "torrc.txt"), 0o600)
 
     cached_data_dir = data_dir
     return data_dir
@@ -245,18 +245,18 @@ def getProfileLongName():
 def getProfileName():
     myname=get("profile", "name")
     if myname == "":
-        return u"myself"
+        return "myself"
     else:
         return myname
 
-class OrderedRawConfigParser(ConfigParser.RawConfigParser):
+class OrderedRawConfigParser(configparser.RawConfigParser):
     def __init__(self, defaults = None):
-        ConfigParser.RawConfigParser.__init__(self, defaults = None)
+        configparser.RawConfigParser.__init__(self, defaults = None)
 
     def write(self, fp):
         """Write an .ini-format representation of the configuration state."""
         if self._defaults:
-            fp.write("[%s]\n" % ConfigParser.DEFAULTSECT)
+            fp.write("[%s]\n" % configparser.DEFAULTSECT)
             for key in sorted(self._defaults):
                 fp.write( "%s = %s\n" % (key, str(self._defaults[key]).replace('\n', '\n\t')))
             fp.write("\n")
@@ -279,22 +279,22 @@ def readConfig():
 
     #remove the BOM (notepad saves with BOM)
     if os.path.exists(file_name):
-        f = file(file_name,'r+b')
+        f = open(file_name, "r+b")
         try:
             header = f.read(3)
-            if header == "\xef\xbb\xbf":
-                print "found UTF8 BOM in torchat.ini, removing it"
+            if header == b"\xef\xbb\xbf":
+                print("found UTF8 BOM in torchat.ini, removing it")
                 f.seek(0)
-                f.write("\x20\x0d\x0a")
+                f.write(b"\x20\x0d\x0a")
         except:
             pass
         f.close()
 
     try:
         config.read(file_name)
-    except ConfigParser.MissingSectionHeaderError:
-        print ""
-        print "*** torchat.ini must be saved as UTF-8 ***"
+    except configparser.MissingSectionHeaderError:
+        print("")
+        print("*** torchat.ini must be saved as UTF-8 ***")
         sys.exit()
 
     #try to read all known options once. This will add
@@ -304,7 +304,7 @@ def readConfig():
 
 def writeConfig():
     fp = open(file_name, "w")
-    os.chmod(file_name, 0600)
+    os.chmod(file_name, 0o600)
     config.write(fp)
     fp.close()
 
@@ -315,13 +315,14 @@ def get(section, option):
         value = config_defaults[section, option]
         cset(section, option, value)
     value = config.get(section, option)
-    if type(value) == str:
+    if isinstance(value, bytes):
         try:
             value = value.decode("UTF-8")
-            value = value.rstrip(" \"'").lstrip(" \"'")
         except:
-            print "*** config file torchat.ini is not UTF-8 ***"
-            print "*** this will most likely break things   ***"
+            print("*** config file torchat.ini is not UTF-8 ***")
+            print("*** this will most likely break things   ***")
+    if isinstance(value, str):
+        value = value.rstrip(" \"'").lstrip(" \"'")
     elif type(value) == int:
         value = str(value)
     elif type(value) == float:
@@ -337,13 +338,14 @@ def getDbgOpt(section, option, defaultValue):
     if not config.has_option(section, option):
         return defaultValue
     value = config.get(section, option)
-    if type(value) == str:
+    if isinstance(value, bytes):
         try:
             value = value.decode("UTF-8")
-            value = value.rstrip(" \"'").lstrip(" \"'")
         except:
-            print "*** config file torchat.ini is not UTF-8 ***"
-            print "*** this will most likely break things   ***"
+            print("*** config file torchat.ini is not UTF-8 ***")
+            print("*** this will most likely break things   ***")
+    if isinstance(value, str):
+        value = value.rstrip(" \"'").lstrip(" \"'")
     elif type(value) == int:
         value = str(value)
     elif type(value) == float:
@@ -367,18 +369,18 @@ def cset(section, option, value):
         config.add_section(section)
     if type(value) == bool:
         value = int(value)
-    if type(value) == unicode:
-        value = value.encode("UTF-8")
+    if isinstance(value, bytes):
+        value = value.decode("UTF-8", "replace")
     config.set(section, option, value)
     writeConfig()
 
 def tb(level=0):
-    print "(%i) ----- start traceback -----\n%s   ----- end traceback -----\n" % (level, traceback.format_exc())
+    print("(%i) ----- start traceback -----\n%s   ----- end traceback -----\n" % (level, traceback.format_exc()))
 
 def tb1():
-    print "---- BEGIN DEBUG CALLSTACK"
+    print("---- BEGIN DEBUG CALLSTACK")
     traceback.print_stack()
-    print "---- END DEBUG CALLSTACK"
+    print("---- END DEBUG CALLSTACK")
 
 #def getTranslators():
 #    translators = []
@@ -420,22 +422,22 @@ def importLanguage():
 
     if not SCRIPT_DIR in sys.path:
         #make sure that script dir is in sys.path (py2exe etc.)
-        print "(1) putting script directory into module search path"
+        print("(1) putting script directory into module search path")
         sys.path.insert(0, SCRIPT_DIR)
 
     dict_std = translations.lang_en.__dict__ #@UndefinedVariable
-    print "(1) trying to import language module %s" % lang_xx
+    print("(1) trying to import language module %s" % lang_xx)
     try:
         #first we try to find a language module in the script dir
         dict_trans = __import__(lang_xx).__dict__
-        print "(1) found custom language module %s.py" % lang_xx
+        print("(1) found custom language module %s.py" % lang_xx)
     except:
         #nothing found, so we try the built in translations
         if lang_xx in translations.__dict__: #@UndefinedVariable
-            print "(1) found built in language module %s" % lang_xx
+            print("(1) found built in language module %s" % lang_xx)
             dict_trans = translations.__dict__[lang_xx].__dict__
         else:
-            print "(0) translation module %s not found"
+            print("(0) translation module %s not found")
             dict_trans = None
 
     if dict_trans:
@@ -444,11 +446,11 @@ def importLanguage():
         #find missing translations and report them in the log
         for key in dict_std:
             if not key in dict_trans:
-                print "(2) %s is missing translation for %s" % (lang_xx, key)
+                print("(2) %s is missing translation for %s" % (lang_xx, key))
         #replace the bindings in lang_en with those from lang_xx
         for key in dict_trans:
             if not key in dict_std:
-                print "(2) unused %s in %s" % (key, lang_xx)
+                print("(2) unused %s in %s" % (key, lang_xx))
             else:
                 dict_std[key] = dict_trans[key]
 
@@ -468,23 +470,23 @@ class LogWriter:
         self.level = getint("logging", "log_level")
         if  self.level and get("logging", "log_file"):
             try:
-                self.logfile = open(self.file_name, 'w')
-                os.chmod(self.file_name, 0600)
-                print "(0) started logging to file '%s'" % self.file_name
-                print "(0) logging to file might leave sensitive information on disk"
+                self.logfile = open(self.file_name, "w", encoding="utf-8")
+                os.chmod(self.file_name, 0o600)
+                print("(0) started logging to file '%s'" % self.file_name)
+                print("(0) logging to file might leave sensitive information on disk")
             except:
                 self.logfile = None
-                print "(0) could not open logfile '%s'" % self.file_name
-                print "(0) logging only to stdout"
+                print("(0) could not open logfile '%s'" % self.file_name)
+                print("(0) logging only to stdout")
 
         else:
             self.logfile = None
-            print "(1) logging to file is disabled"
+            print("(1) logging to file is disabled")
             
-        print "(1) current log level is %i" % self.level
-        print "(1) locale encoding is %s" % LOCALE_ENC
-        print "(1) console encoding is %s" % CONSOLE_ENC
-        print "(1) LogWriter initialized"
+        print("(1) current log level is %i" % self.level)
+        print("(1) locale encoding is %s" % LOCALE_ENC)
+        print("(1) console encoding is %s" % CONSOLE_ENC)
+        print("(1) LogWriter initialized")
 
     def write(self, text):
         text = text.rstrip()
@@ -493,7 +495,7 @@ class LogWriter:
             
         # If something prints a string that is not unicode then we simply
         # assume it is encoded in the encoding of the current locale.
-        if isinstance(text, str):
+        if isinstance(text, bytes):
             text = text.decode(self.encoding, 'replace')
             
         text += "\n"
@@ -521,11 +523,11 @@ class LogWriter:
             except:
                 pass
             if CONSOLE_ENC:
-                self.stdout.write(text.encode(CONSOLE_ENC, 'replace'))
+                self.stdout.write(text)
                 self.stdout.flush()
             if self.logfile:
                 # logfile like all other TorChat related files always UTF-8
-                self.logfile.write(text.encode("UTF-8"))
+                self.logfile.write(text)
                 self.logfile.flush()
 
     def close(self):
@@ -541,15 +543,15 @@ def main():
     readConfig()
     log_writer = LogWriter()
     
-    print "(0) python version %s" % sys.version.replace("\n", "").replace("\r", "")
+    print("(0) python version %s" % sys.version.replace("\n", "").replace("\r", ""))
 
     if isPortable():
-        print "(0) running in portable mode, all data is kept inside the bin folder."
+        print("(0) running in portable mode, all data is kept inside the bin folder.")
         if (len(sys.argv) > 1):
-            print "(0) ignoring requested profile '%s' because profiles do not exist in portable mode" % toUnicode(sys.argv[1])
+            print("(0) ignoring requested profile '%s' because profiles do not exist in portable mode" % toUnicode(sys.argv[1]))
 
-    print "(0) script directory is %s" % SCRIPT_DIR
-    print "(0) data directory is %s" % getDataDir()
+    print("(0) script directory is %s" % SCRIPT_DIR)
+    print("(0) data directory is %s" % getDataDir())
 
     #make a backup of all strings that are in the standard language file
     #because we could need them when switching between incomplete languages
