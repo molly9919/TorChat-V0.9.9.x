@@ -101,7 +101,7 @@ class NotificationWindowGeneric(wx.Frame):
         sizer = wx.BoxSizer()
         self.panel.SetSizer(sizer)
 
-        if buddy.profile_avatar_object <> None:
+        if buddy.profile_avatar_object != None:
             bitmap = buddy.profile_avatar_object
         else:
             bitmap = wx.Bitmap(os.path.join(config.ICON_DIR, "torchat.png"), wx.BITMAP_TYPE_PNG)
@@ -185,15 +185,15 @@ def notificationWindow(mw, name, text, buddy):
     try:
         function = globals()["notificationWindow_%s" % method]
     except:
-        print "(1) notification method '%s' is not implemented, falling back to 'generic'." % method
+        print("(1) notification method '%s' is not implemented, falling back to 'generic'." % method)
         notificationWindow_generic(mw, name, text, buddy)
         return
     
     try:
         function(mw, name, text, buddy)
     except:
-        print "(1) exception while using notification method '%s'" % method
-        print "(1) falling back to 'generic'. Traceback follows:"
+        print("(1) exception while using notification method '%s'" % method)
+        print("(1) falling back to 'generic'. Traceback follows:")
         config.tb()
         notificationWindow_generic(mw, name, text, buddy)
 

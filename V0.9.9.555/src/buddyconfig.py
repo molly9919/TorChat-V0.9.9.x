@@ -17,7 +17,7 @@
 import sys, os
 #import locale
 import numbers
-import ConfigParser
+import configparser
 import config
 #import traceback
 #import inspect
@@ -77,14 +77,14 @@ def findex(index):
         return '999999'
 
 
-class OrderedRawBConfigParser(ConfigParser.RawConfigParser):
+class OrderedRawBConfigParser(configparser.RawConfigParser):
     def __init__(self, defaults = None):
-        ConfigParser.RawConfigParser.__init__(self, defaults = None)
+        configparser.RawConfigParser.__init__(self, defaults = None)
 
     def write(self, fp):
         """Write an .ini-format representation of the configuration state."""
         if self._defaults:
-            fp.write("[%s]\n" % ConfigParser.DEFAULTSECT)
+            fp.write("[%s]\n" % configparser.DEFAULTSECT)
             for key in sorted(self._defaults):
                 fp.write( "%s = %s\n" % (key, str(self._defaults[key]).replace('\n', '\n\t')))
             fp.write("\n")
@@ -112,7 +112,7 @@ def readConfig():
         try:
             header = f.read(3)
             if header == "\xef\xbb\xbf":
-                print "found UTF8 BOM in buddy-list.ini, removing it"
+                print("found UTF8 BOM in buddy-list.ini, removing it")
                 f.seek(0)
                 f.write("\x20\x0d\x0a")
         except:
@@ -121,9 +121,9 @@ def readConfig():
 
     try:
         buddy_config.read(buddy_file_name)
-    except ConfigParser.MissingSectionHeaderError:
-        print ""
-        print "*** buddy-list.ini must be saved as UTF-8 ***"
+    except configparser.MissingSectionHeaderError:
+        print("")
+        print("*** buddy-list.ini must be saved as UTF-8 ***")
         sys.exit()
 
     #try to read all known options once. This will add
@@ -133,7 +133,7 @@ def readConfig():
 
 def writeConfig():
     fp = open(buddy_file_name, "w")
-    os.chmod(buddy_file_name, 0600)
+    os.chmod(buddy_file_name, 0o600)
     buddy_config.write(fp)
     fp.close()
 
@@ -149,8 +149,8 @@ def get(section, option):
             value = value.decode("UTF-8")
             value = value.rstrip(" \"'").lstrip(" \"'")
         except:
-            print "***  file buddy-list.ini is not UTF-8    ***"
-            print "*** this will most likely break things   ***"
+            print("***  file buddy-list.ini is not UTF-8    ***")
+            print("*** this will most likely break things   ***")
     elif type(value) == int:
         value = str(value)
     elif type(value) == float:
@@ -173,8 +173,8 @@ def getWithDefault(section, option, defaultValue):
             if value == "":
                 return defaultValue
         except:
-            print "***  file buddy-list.ini is not UTF-8    ***"
-            print "*** this will most likely break things   ***"
+            print("***  file buddy-list.ini is not UTF-8    ***")
+            print("*** this will most likely break things   ***")
     elif type(value) == int:
         value = str(value)
     elif type(value) == float:
@@ -198,7 +198,7 @@ def bset(section, option, value):
         buddy_config.add_section(section)
     if type(value) == bool:
         value = int(value)
-    if type(value) == unicode:
+    if type(value) == str:
         value = value.encode("UTF-8")
     buddy_config.set(section, option, value)
     writeConfig()

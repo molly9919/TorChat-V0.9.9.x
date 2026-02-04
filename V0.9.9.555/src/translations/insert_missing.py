@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 import os
 import sys
@@ -25,7 +25,7 @@ translate them.
 
 Continue? (y/n) """
 
-c = raw_input(msg)
+c = input(msg)
 if c != "y":
     sys.exit()
 
@@ -73,7 +73,7 @@ def readFile(filename):
         
 
 def updateTranslation(filename):
-    print "*** updating %s" % filename
+    print("*** updating %s" % filename)
     cnt = 0
     lang_xx_new = []
     lang_xx = readFile(filename)
@@ -95,7 +95,7 @@ def updateTranslation(filename):
             # no translation found, use the version 
             # from lang_en and insert a # before
             lang_xx_new.append("# " + line_en)
-            print "inserting %s" % def_en
+            print("inserting %s" % def_en)
             cnt += 1
         else:
             # use the already translated version

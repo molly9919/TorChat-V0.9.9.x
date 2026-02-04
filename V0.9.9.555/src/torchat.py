@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 # vim: set sw=4 sts=4 expandtab:
 
@@ -25,21 +25,21 @@ if config.isMac():
     if wxversion.checkInstalled('3.0'):
         wxversion.select('3.0') # For Mac it is tweaked and optimized with 3.0
     else:
-        print "(1) wxPython-3.0 is not installed"
+        print("(1) wxPython-3.0 is not installed")
         
 else:
     try:
         if wxversion.checkInstalled('3.0'):
             wxversion.select('3.0') # On MSW and GTK we stick with 3.0 for now
         else:
-            print "(1) wxPython-3.0 is not installed"
+            print("(1) wxPython-3.0 is not installed")
         
     except:
         # continue anyways. 
         # in the pyinstaller binary wxversion can screw up and throw exceptions 
         # so we ignore the error and just use the wx that happens to be available.
         # TODO: Does this still happen since we now use checkInstalled()?
-        print "(2) wxversion screwed up, this is harmless, ignoring it."
+        print("(2) wxversion screwed up, this is harmless, ignoring it.")
 
 import wx
 #import os
@@ -47,7 +47,7 @@ import tc_client
 import tc_gui
         
 def main():
-    print "(2) wxPython version %s" % wx.version()
+    print("(2) wxPython version %s" % wx.version())
     #create the mandatory wx application object
     if config.isMac():
         import tc_mac
@@ -58,22 +58,22 @@ def main():
     #test for availability of our listening port
     interface = config.get("client", "listen_interface")
     port = config.getint("client", "listen_port")
-    print "(1) opening TorChat listener on %s:%s" % (interface, port)
+    print("(1) opening TorChat listener on %s:%s" % (interface, port))
     listen_socket = tc_client.tryBindPort(interface, port)
     if not listen_socket:
-        print "(1) %s:%s is already in use" % (interface, port)
+        print("(1) %s:%s is already in use" % (interface, port))
         wx.MessageBox(tc_gui.lang.D_WARN_USED_PORT_MESSAGE % (interface, port),
                       tc_gui.lang.D_WARN_USED_PORT_TITLE)
         return
     else:
-        print "(1) TorChat is listening on %s:%s" % (interface, port)
+        print("(1) TorChat is listening on %s:%s" % (interface, port))
     
     #now continue with normal program startup 
-    print "(1) start initializing main window"
+    print("(1) start initializing main window")
     app.mw = tc_gui.MainWindow(listen_socket)
     app.SetTopWindow(app.mw)
-    print "(1) main window initialized"
-    print "(1) entering main loop"
+    print("(1) main window initialized")
+    print("(1) entering main loop")
     app.MainLoop()
 
 if __name__ == "__main__":

@@ -1,5 +1,5 @@
-#!/usr/bin/python
-from __future__ import print_function
+#!/usr/bin/env python3
+
 
 import os
 import version
@@ -117,7 +117,7 @@ echo creating symbolic links...
 ln -s /usr/share/pixmaps/torchat icons
 
 #echo compiling to bytecode...
-#python2.5 -OOc "import torchat"
+#python3 -OOc "import torchat"
 
 echo tor.chat installed.
 """
@@ -146,10 +146,12 @@ args=$*
 
 echo "trying to find suitable python version"
 
-tryStartWith "python2"
-tryStartWith "python2.7"
-tryStartWith "python2.6"
-tryStartWith "python2.5"
+tryStartWith "python3"
+tryStartWith "python3.11"
+tryStartWith "python3.10"
+tryStartWith "python3.9"
+tryStartWith "python3.8"
+tryStartWith "python3.7"
 
 echo "no suitable python version found, you need one of them listed above"
 """
