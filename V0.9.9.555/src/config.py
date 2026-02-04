@@ -534,7 +534,6 @@ class LogWriter:
             self.stdout.flush()
         if self.logfile:
             self.logfile.flush()
-                self.logfile.flush()
 
     def close(self):
         self.stdout.close()
