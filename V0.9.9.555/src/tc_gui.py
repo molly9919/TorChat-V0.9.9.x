@@ -137,7 +137,7 @@ class TaskbarMenu(wx.Menu):
         # show/hide
 
         item = wx.MenuItem(self, wx.NewId(), lang.MTB_SHOW_HIDE_TORCHAT)
-        self.AppendItem(item)
+        self.Append(item)
         self.Bind(wx.EVT_MENU, self.onShowHide, item)
 
         self.AppendSeparator()
@@ -152,7 +152,7 @@ class TaskbarMenu(wx.Menu):
                 self.wnd[id] = window
                 item = wx.MenuItem(self, id, window.getTitleShort())
                 item.SetBitmap(getStatusBitmap(window.buddy.status))
-                self.AppendItem(item)
+                self.Append(item)
                 self.Bind(wx.EVT_MENU, self.onChatWindow, item)
                 cnt += 1
 
@@ -162,24 +162,24 @@ class TaskbarMenu(wx.Menu):
         # edit profile
 
         item = wx.MenuItem(self, wx.NewId(), lang.MPOP_EDIT_MY_PROFILE)
-        self.AppendItem(item)
+        self.Append(item)
         self.Bind(wx.EVT_MENU, self.onProfile, item)
 
         # status
 
         item = wx.MenuItem(self, wx.NewId(), lang.ST_AVAILABLE)
         item.SetBitmap(getStatusBitmap(tc_client.STATUS_ONLINE))
-        self.AppendItem(item)
+        self.Append(item)
         self.Bind(wx.EVT_MENU, self.onAvailable, item)
 
         item = wx.MenuItem(self, wx.NewId(), lang.ST_AWAY)
         item.SetBitmap(getStatusBitmap(tc_client.STATUS_AWAY))
-        self.AppendItem(item)
+        self.Append(item)
         self.Bind(wx.EVT_MENU, self.onAway, item)
 
         item = wx.MenuItem(self, wx.NewId(), lang.ST_EXTENDED_AWAY)
         item.SetBitmap(getStatusBitmap(tc_client.STATUS_XA))
-        self.AppendItem(item)
+        self.Append(item)
         self.Bind(wx.EVT_MENU, self.onXA, item)
 
         self.AppendSeparator()
@@ -187,7 +187,7 @@ class TaskbarMenu(wx.Menu):
         # quit
 
         item = wx.MenuItem(self, wx.NewId(), lang.MTB_QUIT)
-        self.AppendItem(item)
+        self.Append(item)
         self.Bind(wx.EVT_MENU, self.onExit, item)
 
     def onShowHide(self, evt):
@@ -225,44 +225,44 @@ class PopupMenu(wx.Menu):
         if type == "contact":
             self.buddy = self.mw.gui_bl.getSelectedBuddy()
             item = wx.MenuItem(self, wx.NewId(), lang.MPOP_CHAT)
-            self.AppendItem(item)
+            self.Append(item)
             self.Bind(wx.EVT_MENU, self.mw.gui_bl.onDClick, item)
 
             if self.buddy.getOfflineMessages():
                 item = wx.MenuItem(self, wx.NewId(), lang.MPOP_SHOW_OFFLINE_MESSAGES)
-                self.AppendItem(item)
+                self.Append(item)
 #MW             self.Bind(wx.EVT_MENU, self.onShowOffline, item)
                 self.Bind(wx.EVT_MENU, self.mw.gui_bl.onDClick, item)
 
                 item = wx.MenuItem(self, wx.NewId(), lang.MPOP_CLEAR_OFFLINE_MESSAGES)
-                self.AppendItem(item)
+                self.Append(item)
                 self.Bind(wx.EVT_MENU, self.onClearOffline, item)
 
             item = wx.MenuItem(self, wx.NewId(), lang.MPOP_SEND_FILE)
-            self.AppendItem(item)
+            self.Append(item)
             self.Bind(wx.EVT_MENU, self.onSendFile, item)
 
             self.AppendSeparator()
             
         item = wx.MenuItem(self, wx.NewId(), lang.MPOP_ADD_CONTACT)
-        self.AppendItem(item)
+        self.Append(item)
         self.Bind(wx.EVT_MENU, self.onAdd, item)
 
         if type == "contact":
             item = wx.MenuItem(self, wx.NewId(), lang.MPOP_EDIT_CONTACT)
-            self.AppendItem(item)
+            self.Append(item)
             self.Bind(wx.EVT_MENU, self.onEdit, item)
 
             item = wx.MenuItem(self, wx.NewId(), lang.MPOP_DELETE_CONTACT)
-            self.AppendItem(item)
+            self.Append(item)
             self.Bind(wx.EVT_MENU, self.onDelete, item)
 
             item = wx.MenuItem(self, wx.NewId(), lang.MPOP_COPY_ID_TO_CLIPBOARD)
-            self.AppendItem(item)
+            self.Append(item)
             self.Bind(wx.EVT_MENU, self.onCopyIdToClipboard, item)
 
         item = wx.MenuItem(self, wx.NewId(), lang.MPOP_EDIT_MY_PROFILE)
-        self.AppendItem(item)
+        self.Append(item)
         self.Bind(wx.EVT_MENU, self.onProfile, item)
 
         self.AppendSeparator()
@@ -273,22 +273,22 @@ class PopupMenu(wx.Menu):
             if not self.isCurrentBuddyLoggingActivated():
 
                 item = wx.MenuItem(self, wx.NewId(), lang.MPOP_ACTIVATE_LOG)
-                self.AppendItem(item)
+                self.Append(item)
                 self.Bind(wx.EVT_MENU, self.onActivateLog, item)
 
                 if self.hasOldLog():
                     item = wx.MenuItem(self, wx.NewId(), lang.MPOP_DELETE_EXISTING_LOG)
-                    self.AppendItem(item)
+                    self.Append(item)
                     self.Bind(wx.EVT_MENU, self.onDeleteLog, item)
 
             else:
 
                 item = wx.MenuItem(self, wx.NewId(), lang.MPOP_STOP_LOG)
-                self.AppendItem(item)
+                self.Append(item)
                 self.Bind(wx.EVT_MENU, self.onStopLog, item)
 
                 item = wx.MenuItem(self, wx.NewId(), lang.MPOP_DELETE_AND_STOP_LOG)
-                self.AppendItem(item)
+                self.Append(item)
                 self.Bind(wx.EVT_MENU, self.onDeleteLog, item)
 
 
@@ -296,7 +296,7 @@ class PopupMenu(wx.Menu):
         #settings
 
         item = wx.MenuItem(self, wx.NewId(), lang.MPOP_SETTINGS)
-        self.AppendItem(item)
+        self.Append(item)
         self.Bind(wx.EVT_MENU, self.onSettings, item)
 
         self.AppendSeparator()
@@ -304,7 +304,7 @@ class PopupMenu(wx.Menu):
         #ask support
 
         item = wx.MenuItem(self, wx.NewId(), lang.MPOP_ASK_AUTHOR % config.get("branding", "support_name2"))
-        self.AppendItem(item)
+        self.Append(item)
         self.Bind(wx.EVT_MENU, self.onAskAuthor, item)
 
 
@@ -314,14 +314,14 @@ class PopupMenu(wx.Menu):
         #about
 
         item = wx.MenuItem(self, wx.NewId(), lang.MPOP_ABOUT)
-        self.AppendItem(item)
+        self.Append(item)
         self.Bind(wx.EVT_MENU, self.onAbout, item)
 
 
         #tipjar
 
         item = wx.MenuItem(self, wx.NewId(), lang.MPOP_TIPJAR)
-        self.AppendItem(item)
+        self.Append(item)
         self.Bind(wx.EVT_MENU, self.onTipJar, item)
 
 
@@ -329,7 +329,7 @@ class PopupMenu(wx.Menu):
 
         self.AppendSeparator()
         item = wx.MenuItem(self, wx.NewId(), lang.MTB_QUIT)
-        self.AppendItem(item)
+        self.Append(item)
         self.Bind(wx.EVT_MENU, self.onQuit, item)
 
     def onSendFile(self, evt):
@@ -932,7 +932,13 @@ class BuddyList(wx.ListCtrl):
             self.mw.PopupMenu(PopupMenu(self.mw, "contact"))
 
     def onRDown(self, evt):
-        index, flags = self.HitTest(evt.GetPosition())
+        if hasattr(evt, "GetPosition"):
+            pos = evt.GetPosition()
+        elif hasattr(evt, "GetPoint"):
+            pos = evt.GetPoint()
+        else:
+            pos = self.ScreenToClient(wx.GetMousePosition())
+        index, flags = self.HitTest(pos)
         if index == -1:
             self.onMouseLeave(evt)
             self.mw.PopupMenu(PopupMenu(self.mw, "empty"))
@@ -1044,7 +1050,10 @@ class BuddyList(wx.ListCtrl):
             line = buddy.getDisplayName()
             index = self.FindItem(0, line)
             if index == -1:
-                index = self.InsertImageStringItem(sys.maxsize, line, self.il_idx[tc_client.STATUS_OFFLINE])
+                try:
+                    index = self.InsertItem(sys.maxsize, line, self.il_idx[tc_client.STATUS_OFFLINE])
+                except AttributeError:
+                    index = self.InsertImageStringItem(sys.maxsize, line, self.il_idx[tc_client.STATUS_OFFLINE])
                 self.SetColumnWidth(0, wx.LIST_AUTOSIZE)
                 self.onBuddyStatusChanged(buddy)
 
@@ -1137,17 +1146,17 @@ class StatusSwitchList(wx.Menu):
 
         item = wx.MenuItem(self, wx.NewId(), lang.ST_AVAILABLE)
         item.SetBitmap(getStatusBitmap(tc_client.STATUS_ONLINE))
-        self.AppendItem(item)
+        self.Append(item)
         self.Bind(wx.EVT_MENU, self.status_switch.onAvailable, item)
 
         item = wx.MenuItem(self, wx.NewId(), lang.ST_AWAY)
         item.SetBitmap(getStatusBitmap(tc_client.STATUS_AWAY))
-        self.AppendItem(item)
+        self.Append(item)
         self.Bind(wx.EVT_MENU, self.status_switch.onAway, item)
 
         item = wx.MenuItem(self, wx.NewId(), lang.ST_EXTENDED_AWAY)
         item.SetBitmap(getStatusBitmap(tc_client.STATUS_XA))
-        self.AppendItem(item)
+        self.Append(item)
         self.Bind(wx.EVT_MENU, self.status_switch.onXA, item)
 
 
@@ -1511,7 +1520,7 @@ class ChatWindow(wx.Frame):
                 id = wx.NewId()
                 item = wx.MenuItem(menu, id, lang.CPOP_COPY)
                 self.Bind(wx.EVT_MENU, self.onCopyUrl, id=id)
-                menu.AppendItem(item)
+                menu.Append(item)
                 self.PopupMenu(menu)
                 menu.Destroy()
         else:
@@ -1524,7 +1533,7 @@ class ChatWindow(wx.Frame):
         id = wx.NewId()
         item = wx.MenuItem(menu, id, lang.CPOP_COPY)
         self.Bind(wx.EVT_MENU, self.onCopy, id=id)
-        menu.AppendItem(item)
+        menu.Append(item)
         sel_from, sel_to = self.txt_in.GetSelection()
         empty = (sel_from == sel_to)
         if empty:
@@ -1533,32 +1542,32 @@ class ChatWindow(wx.Frame):
         id = wx.NewId()
         item = wx.MenuItem(menu, id, lang.MPOP_SEND_FILE)
         self.Bind(wx.EVT_MENU, self.onSendFile, id=id)
-        menu.AppendItem(item)
+        menu.Append(item)
 
         id = wx.NewId()
         item = wx.MenuItem(menu, id, lang.MPOP_EDIT_CONTACT)
         self.Bind(wx.EVT_MENU, self.onEditBuddy, id=id)
-        menu.AppendItem(item)
+        menu.Append(item)
 
         menu.AppendSeparator()
 
         if not self.isLoggingActivated():
             item = wx.MenuItem(menu, wx.NewId(), lang.MPOP_ACTIVATE_LOG)
-            menu.AppendItem(item)
+            menu.Append(item)
             menu.Bind(wx.EVT_MENU, self.onActivateLog, item)
 
             if self.hasOldLog():
                 item = wx.MenuItem(menu, wx.NewId(), lang.MPOP_DELETE_EXISTING_LOG)
-                menu.AppendItem(item)
+                menu.Append(item)
                 menu.Bind(wx.EVT_MENU, self.onDeleteLog, item)
 
         else:
             item = wx.MenuItem(menu, wx.NewId(), lang.MPOP_STOP_LOG)
-            menu.AppendItem(item)
+            menu.Append(item)
             menu.Bind(wx.EVT_MENU, self.onStopLog, item)
 
             item = wx.MenuItem(menu, wx.NewId(), lang.MPOP_DELETE_AND_STOP_LOG)
-            menu.AppendItem(item)
+            menu.Append(item)
             menu.Bind(wx.EVT_MENU, self.onDeleteLog, item)
 
         self.PopupMenu(menu)

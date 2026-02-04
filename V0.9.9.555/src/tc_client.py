@@ -2351,6 +2351,12 @@ def startPortableTor():
                 tor_pid = False
 
         if tor_pid:
+            time.sleep(0.5)
+            if tor_proc and tor_proc.poll() is not None:
+                print("(1) Tor exited early; falling back to system Tor settings")
+                tor_pid = False
+
+        if tor_pid:
             #tor = subprocess.Popen("tor.exe -f torrc.txt".split(), creationflags=0x08000000)
             print("(1) successfully started Tor (pid=%i)" % tor_pid)
 
