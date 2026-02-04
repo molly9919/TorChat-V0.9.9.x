@@ -128,6 +128,9 @@ rm -rf  /usr/lib/torchat
 """
 
 start_script = """#!/bin/sh
+LOG_DIR="${HOME}/.torchat"
+LOG_FILE="${LOG_DIR}/torchat.log"
+mkdir -p "${LOG_DIR}"
 
 tryStartWith(){
     echo "searching for "$1
@@ -136,7 +139,7 @@ tryStartWith(){
         echo "starting torchat with "$1
         echo "command line arguments: "$args
         cd /usr/lib/torchat
-        /usr/bin/$1 torchat.py $args
+        /usr/bin/$1 torchat.py $args >> "${LOG_FILE}" 2>&1
         exit
     fi
 }

@@ -51,6 +51,7 @@ import wx
 #import os
 import tc_client
 import tc_gui
+import os
         
 def main():
     print("(2) wxPython version %s" % wx.version())
@@ -82,8 +83,19 @@ def main():
     print("(1) entering main loop")
     app.MainLoop()
 
+
 if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
         tc_client.stopPortableTor()
+    except Exception:
+        import traceback
+        log_path = os.path.join(config.getDataDir(), "torchat_crash.log")
+        try:
+            with open(log_path, "a", encoding="utf-8") as log_file:
+                log_file.write(traceback.format_exc())
+                log_file.write("\n")
+        except Exception:
+            pass
+        raise
