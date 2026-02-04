@@ -920,7 +920,13 @@ class BuddyList(wx.ListCtrl):
         evt.Skip()
 
     def onRClick(self, evt):
-        index, flags = self.HitTest(evt.GetPosition())
+        if hasattr(evt, "GetPosition"):
+            pos = evt.GetPosition()
+        elif hasattr(evt, "GetPoint"):
+            pos = evt.GetPoint()
+        else:
+            pos = self.ScreenToClient(wx.GetMousePosition())
+        index, flags = self.HitTest(pos)
         if index != -1:
             self.onMouseLeave(evt)
             self.mw.PopupMenu(PopupMenu(self.mw, "contact"))
