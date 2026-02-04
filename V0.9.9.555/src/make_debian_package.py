@@ -15,7 +15,7 @@ Section: internet
 Priority: optional
 Architecture: all
 Essential: no
-Depends: tor, python3 (>= 3.4), python3-wxgtk4.0 | python3-wxgtk3.0 | python3-wxgtk, python3-crypto, python3-pil
+Depends: tor, python3 (>= 3.4), python3-wxgtk4.0 | python3-wxgtk3.0 | python3-wxgtk
 Maintainer: Haxxie       <haxxie@safe-mail.net>
 Provides: tor.chat
 Description: Secure Instant Messenger for Tor
