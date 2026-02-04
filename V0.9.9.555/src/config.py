@@ -528,6 +528,12 @@ class LogWriter:
             if self.logfile:
                 # logfile like all other TorChat related files always UTF-8
                 self.logfile.write(text)
+
+    def flush(self):
+        if self.stdout:
+            self.stdout.flush()
+        if self.logfile:
+            self.logfile.flush()
                 self.logfile.flush()
 
     def close(self):

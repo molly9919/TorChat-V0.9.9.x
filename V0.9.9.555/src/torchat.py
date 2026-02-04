@@ -20,26 +20,32 @@
 
 import config
 #import buddyconfig
-import wxversion
-if config.isMac():
-    if wxversion.checkInstalled('3.0'):
-        wxversion.select('3.0') # For Mac it is tweaked and optimized with 3.0
-    else:
-        print("(1) wxPython-3.0 is not installed")
-        
-else:
-    try:
+try:
+    import wxversion
+except ModuleNotFoundError:
+    wxversion = None
+    print("(1) wxversion is not available; using default wxPython import.")
+
+if wxversion:
+    if config.isMac():
         if wxversion.checkInstalled('3.0'):
-            wxversion.select('3.0') # On MSW and GTK we stick with 3.0 for now
+            wxversion.select('3.0') # For Mac it is tweaked and optimized with 3.0
         else:
             print("(1) wxPython-3.0 is not installed")
-        
-    except:
-        # continue anyways. 
-        # in the pyinstaller binary wxversion can screw up and throw exceptions 
-        # so we ignore the error and just use the wx that happens to be available.
-        # TODO: Does this still happen since we now use checkInstalled()?
-        print("(2) wxversion screwed up, this is harmless, ignoring it.")
+            
+    else:
+        try:
+            if wxversion.checkInstalled('3.0'):
+                wxversion.select('3.0') # On MSW and GTK we stick with 3.0 for now
+            else:
+                print("(1) wxPython-3.0 is not installed")
+            
+        except:
+            # continue anyways. 
+            # in the pyinstaller binary wxversion can screw up and throw exceptions 
+            # so we ignore the error and just use the wx that happens to be available.
+            # TODO: Does this still happen since we now use checkInstalled()?
+            print("(2) wxversion screwed up, this is harmless, ignoring it.")
 
 import wx
 #import os
