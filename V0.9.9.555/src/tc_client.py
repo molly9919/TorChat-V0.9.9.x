@@ -2305,6 +2305,67 @@ def tryBindPort(interface, port):
         tb()
         return False
 
+def updateTorrcPorts(torrc_path, socks_port, control_port):
+    try:
+        f = open(torrc_path, "r")
+        lines = f.read().splitlines()
+        f.close()
+    except:
+        print "(0) could not open torrc file to update ports: %s" % torrc_path
+        tb()
+        return False
+
+    updated_socks = False
+    updated_control = False
+    new_lines = []
+    for line in lines:
+        stripped = line.lstrip()
+        if stripped.startswith("SocksPort "):
+            new_lines.append("SocksPort %i" % socks_port)
+            updated_socks = True
+            continue
+        if stripped.startswith("ControlPort ") or stripped.startswith("# ControlPort "):
+            new_lines.append("ControlPort %i" % control_port)
+            updated_control = True
+            continue
+        new_lines.append(line)
+
+    if not updated_socks:
+        new_lines.append("SocksPort %i" % socks_port)
+    if not updated_control:
+        new_lines.append("ControlPort %i" % control_port)
+
+    try:
+        f = open(torrc_path, "w")
+        f.write("\n".join(new_lines) + "\n")
+        f.close()
+    except:
+        print "(0) could not write torrc file with updated ports: %s" % torrc_path
+        tb()
+        return False
+
+    return True
+
+def portsAvailable(socks_port, control_port):
+    socks_socket = tryBindPort("127.0.0.1", socks_port)
+    if socks_socket:
+        socks_socket.close()
+    control_socket = tryBindPort("127.0.0.1", control_port)
+    if control_socket:
+        control_socket.close()
+    return bool(socks_socket and control_socket)
+
+def findAlternatePorts(socks_port, control_port, attempts=20):
+    control_offset = control_port - socks_port
+    if control_offset <= 0:
+        control_offset = 10
+    for step in range(1, attempts + 1):
+        candidate_socks = socks_port + step
+        candidate_control = candidate_socks + control_offset
+        if portsAvailable(candidate_socks, candidate_control):
+            return (candidate_socks, candidate_control)
+    return False
+
 def startPortableTor():
     print "(1) entering function startPortableTor()"
     global tor_in, tor_out
@@ -2327,8 +2388,26 @@ def startPortableTor():
 
         # now start tor with the supplied config file
         print "(1) trying to start Tor"
+        tor_pid = False
+        skip_start = False
+        torrc_path = "torrc.txt"
+        socks_port = config.getint("tor_portable", "tor_server_socks_port")
+        control_port = config.getint("tor_portable", "tor_server_control_port")
+        updateTorrcPorts(torrc_path, socks_port, control_port)
+        if not portsAvailable(socks_port, control_port):
+            print "(0) Tor ports already in use (SocksPort %i / ControlPort %i)" % (socks_port, control_port)
+            alt_ports = findAlternatePorts(socks_port, control_port)
+            if alt_ports:
+                socks_port, control_port = alt_ports
+                print "(1) retrying portable Tor with alternate ports (SocksPort %i / ControlPort %i)" % (socks_port, control_port)
+                config.cset("tor_portable", "tor_server_socks_port", socks_port)
+                config.cset("tor_portable", "tor_server_control_port", control_port)
+                updateTorrcPorts(torrc_path, socks_port, control_port)
+            else:
+                print "(0) no free port pair found, will use system Tor config"
+                skip_start = True
 
-        if config.isWindows():
+        if not skip_start and config.isWindows():
             if os.path.exists("tor.exe"):
                 #start the process without opening a console window
                 startupinfo = subprocess.STARTUPINFO()
@@ -2338,7 +2417,7 @@ def startPortableTor():
             else:
                 print "(1) there is no portable tor.exe"
                 tor_pid = False
-        else:
+        elif not skip_start:
             if os.path.exists("tor.sh"):
                 #let our shell script start a tor instance
                 os.system("chmod 0700 tor.sh")

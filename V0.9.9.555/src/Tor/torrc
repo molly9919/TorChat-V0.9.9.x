@@ -33,10 +33,12 @@
 ##
 #############################################################################
 
-SocksPort 11109
+## If Tor is already running, change SocksPort/ControlPort to unused values.
+## These should match the [tor_portable] values in torchat.ini.
+SocksPort 19109
 
-## we don't use the control port currently, so leave this alone
-# ControlPort 11119 
+## we don't use the control port currently, but it must not conflict.
+ControlPort 19119 
 
 ## INCOMING connections for the hidden service arrive at 11009 
 ## and will be forwarded to TorChat at 127.0.0.1:11009

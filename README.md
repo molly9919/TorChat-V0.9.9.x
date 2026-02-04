@@ -3,6 +3,12 @@ Working updates to the Original TorChat.
 
 Future version 1.0.0.1 - Planned release for Python V3 
 
+Packaging note (portable Tor):
+- If Tor is already running on the system, change the portable Socks port to a free value
+  (edit `V0.9.9.555/src/torchat.ini` under `[tor_portable]` and the matching
+  `V0.9.9.555/src/Tor/torrc.txt` entry) before launching TorChat, or let TorChat retry
+  with alternate ports when it detects an "address already in use" conflict.
+
 
 Future version 0.9.9.556 (soon)
 - file transfer from older versions blocked by default. The potential for unwanted file fragments 
@@ -62,5 +68,4 @@ version 0.9.9.553 (Obsolete with Tov V3 addresses)
 - Bernd is working on a port to Pascal, so I understand his lack of interest in supporting this.
 -  That said, the original TorChat was a brilliant piece of software and it would be a shame
 -  to let it die.
-
 
