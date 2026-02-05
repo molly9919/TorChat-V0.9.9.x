@@ -165,6 +165,10 @@ class TaskbarMenu(wx.Menu):
         self.Append(item)
         self.Bind(wx.EVT_MENU, self.onProfile, item)
 
+        item = wx.MenuItem(self, wx.NewId(), lang.MPOP_COPY_ID_TO_CLIPBOARD)
+        self.Append(item)
+        self.Bind(wx.EVT_MENU, self.onCopyOwnIdToClipboard, item)
+
         # status
 
         item = wx.MenuItem(self, wx.NewId(), lang.ST_AVAILABLE)
@@ -213,6 +217,15 @@ class TaskbarMenu(wx.Menu):
     def onProfile(self, evt):
         dialog = DlgEditProfile(self.mw, self.mw)
         dialog.ShowModal()
+
+    def onCopyOwnIdToClipboard(self, evt):
+        copyTextToClipboard(config.get("client", "own_hostname"))
+
+
+def copyTextToClipboard(text):
+    if wx.TheClipboard.Open():
+        wx.TheClipboard.SetData(wx.TextDataObject(str(text)))
+        wx.TheClipboard.Close()
 
 
 class PopupMenu(wx.Menu):
@@ -268,6 +281,10 @@ class PopupMenu(wx.Menu):
         item = wx.MenuItem(self, wx.NewId(), lang.MPOP_EDIT_MY_PROFILE)
         self.Append(item)
         self.Bind(wx.EVT_MENU, self.onProfile, item)
+
+        item = wx.MenuItem(self, wx.NewId(), lang.MPOP_COPY_ID_TO_CLIPBOARD)
+        self.Append(item)
+        self.Bind(wx.EVT_MENU, self.onCopyOwnIdToClipboard, item)
 
         self.AppendSeparator()
 
@@ -376,11 +393,10 @@ class PopupMenu(wx.Menu):
             pass
 
     def onCopyIdToClipboard(self, evt):
-        if not wx.TheClipboard.IsOpened():
-            address = wx.TextDataObject(self.buddy.address)
-            wx.TheClipboard.Open()
-            wx.TheClipboard.SetData(address)
-            wx.TheClipboard.Close()
+        copyTextToClipboard(self.buddy.address)
+
+    def onCopyOwnIdToClipboard(self, evt):
+        copyTextToClipboard(config.get("client", "own_hostname"))
 
     def getChatWindow(self):
         # this is called by the on*Log() functions,
