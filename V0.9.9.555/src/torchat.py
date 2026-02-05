@@ -77,7 +77,14 @@ def main():
     
     #now continue with normal program startup 
     print("(1) start initializing main window")
-    app.mw = tc_gui.MainWindow(listen_socket)
+    try:
+        app.mw = tc_gui.MainWindow(listen_socket)
+    except Exception:
+        try:
+            listen_socket.close()
+        except Exception:
+            pass
+        raise
     app.SetTopWindow(app.mw)
     print("(1) main window initialized")
     print("(1) entering main loop")

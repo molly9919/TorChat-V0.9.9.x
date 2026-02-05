@@ -141,7 +141,7 @@ def get(section, option):
     if not buddy_config.has_section(section):
         buddy_config.add_section(section)
     if not buddy_config.has_option(section, option):
-        value = bconfig_defaults[section, option]
+        value = bconfig_defaults.get((section, option), "")
         bset(section, option, value)
     value = buddy_config.get(section, option)
     if isinstance(value, bytes):
