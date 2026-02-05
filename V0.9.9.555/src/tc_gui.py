@@ -2095,7 +2095,9 @@ class MainWindow(wx.Frame):
                     wx.CallAfter(window.Close)
 
     def onClose(self, evt):
-        self.Show(False)
+        # Closing the main window should fully exit to avoid lingering
+        # background processes that keep ports bound.
+        self.exitProgram()
 
     def exitProgram(self):
         w,h = self.GetSize()
