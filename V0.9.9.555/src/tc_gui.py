@@ -915,10 +915,15 @@ class BuddyList(wx.ListCtrl):
         #find a better way to prevent this
         wx.CallAfter(self.mw.SetFocus)
 
+    def _extractAddress(self, item_text):
+        if not item_text:
+            return ""
+        return str(item_text).split(" ", 1)[0].strip()
+
     def onDClick(self, evt):
         i = self.GetFirstSelected()
         if i != -1:
-            address = str(self.GetItemText(i)[0:16]) # might be OK to use first 16 of the 56 in a display
+            address = self._extractAddress(self.GetItemText(i))
             laddress = address.lower()
             for buddy in self.bl.list:
                 baddress = str(buddy.address)
@@ -980,13 +985,13 @@ class BuddyList(wx.ListCtrl):
             index = self.GetFirstSelected()
         if index == -1:
             return None
-        addr = self.GetItemText(index)[0:16]
+        addr = self._extractAddress(self.GetItemText(index))
         return self.bl.getBuddyFromAddress(addr)
 
     def getBuddyFromXY(self, position):
         index, flags = self.HitTest(position)
         if index != -1:
-            addr = self.GetItemText(index)[0:16]
+            addr = self._extractAddress(self.GetItemText(index))
             return self.bl.getBuddyFromAddress(addr)
         else:
             return None

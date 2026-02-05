@@ -780,18 +780,22 @@ class BuddyList(object):
                 line = line.rstrip().decode("UTF-8", "replace")
             else:
                 line = line.rstrip()
-            # Locate the space & just parse it.
+            # Locate the address token and keep the full onion ID (v2 or v3).
             name = ""
             addy = ""
-            if len(line) > 15: # This os OK since V0.9.9.553 never ran with Tor V3
+            line = line.strip()
+            if len(line) > 0:
                 try:
-                    sp = line.split(" ")
-                    addy = sp[0][0:16]
-                    name = " ".join(sp[1:])
+                    sp = line.split(" ", 1)
+                    addy = sp[0].strip()
+                    if len(sp) > 1:
+                        name = sp[1]
                 except:
-                    addy = line[0:16]
+                    addy = line
+
+            if addy:
                 # record details for the buddylist.ini file
-                if addy == my_addy:	# force us to be first in the list.
+                if addy.lower() == str(my_addy).lower():	# force us to be first in the list.
                     found = True
                     addy_arr[0] = addy
                     name_arr[0] = name
@@ -800,13 +804,13 @@ class BuddyList(object):
                     # Fix-up mangled old lists...... Filter-out duplicate addresses.
                     #
                     dupe = False
-                    for ndx in range(0, len(addy_arr)): 
-                        if addy == addy_arr[ndx]:       
+                    for ndx in range(0, len(addy_arr)):
+                        if addy.lower() == str(addy_arr[ndx]).lower():
                             dupe = True
                     if not dupe:
-                        count +=1
-                        addy_arr.append( addy )
-                        name_arr.append( name )
+                        count += 1
+                        addy_arr.append(addy)
+                        name_arr.append(name)
 
         if not found:
             print("(2) adding own hostname to list") 
