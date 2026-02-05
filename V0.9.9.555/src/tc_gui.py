@@ -224,6 +224,10 @@ class PopupMenu(wx.Menu):
 
         if type == "contact":
             self.buddy = self.mw.gui_bl.getSelectedBuddy()
+            if self.buddy is None:
+                type = "empty"
+
+        if type == "contact":
             item = wx.MenuItem(self, wx.NewId(), lang.MPOP_CHAT)
             self.Append(item)
             self.Bind(wx.EVT_MENU, self.mw.gui_bl.onDClick, item)
@@ -749,6 +753,7 @@ class BuddyList(wx.ListCtrl):
         wx.ListCtrl.__init__(self, parent, -1, style=wx.LC_REPORT | wx.LC_NO_HEADER)
         self.mw = main_window
         self.bl = self.mw.buddy_list
+        self.context_menu_index = -1
 
         self.InsertColumn(0, "buddy")
 
@@ -928,8 +933,12 @@ class BuddyList(wx.ListCtrl):
             pos = self.ScreenToClient(wx.GetMousePosition())
         index, flags = self.HitTest(pos)
         if index != -1:
+            self.context_menu_index = index
+            self.Select(index)
+            self.Focus(index)
             self.onMouseLeave(evt)
             self.mw.PopupMenu(PopupMenu(self.mw, "contact"))
+            self.context_menu_index = -1
 
     def onRDown(self, evt):
         if hasattr(evt, "GetPosition"):
@@ -940,13 +949,21 @@ class BuddyList(wx.ListCtrl):
             pos = self.ScreenToClient(wx.GetMousePosition())
         index, flags = self.HitTest(pos)
         if index == -1:
+            self.context_menu_index = -1
             self.onMouseLeave(evt)
             self.mw.PopupMenu(PopupMenu(self.mw, "empty"))
         else:
+            self.context_menu_index = index
+            self.Select(index)
+            self.Focus(index)
             evt.Skip()
 
     def getSelectedBuddy(self):
-        index = self.GetFirstSelected()
+        index = self.context_menu_index
+        if index == -1:
+            index = self.GetFirstSelected()
+        if index == -1:
+            return None
         addr = self.GetItemText(index)[0:16]
         return self.bl.getBuddyFromAddress(addr)
 
