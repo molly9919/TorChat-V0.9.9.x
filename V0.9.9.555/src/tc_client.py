@@ -907,7 +907,7 @@ class BuddyList(object):
 
     def getIncomingBuddyFromAddress(self, address):
         for buddy in self.incoming_buddies:
-            if buddy.address == address.lower:
+            if buddy.address == str(address).lower():
                 return buddy
         return None
 

@@ -355,7 +355,7 @@ class PopupMenu(wx.Menu):
 
     def onSendFile(self, evt):
         title = lang.DFT_FILE_OPEN_TITLE % self.buddy.getAddressAndDisplayName()
-        dialog = wx.FileDialog(self.mw, title, style=wx.OPEN)
+        dialog = wx.FileDialog(self.mw, title, style=wx.FD_OPEN)
         dialog.SetDirectory(config.getHomeDir())
         if dialog.ShowModal() == wx.ID_OK:
             file_name = dialog.GetPath()
@@ -717,7 +717,7 @@ class DlgEditProfile(wx.Dialog):
         
     def onAvatar(self, evt):
         title = lang.DEP_AVATAR_SELECT_PNG
-        dialog = wx.FileDialog(self, title, style=wx.OPEN)
+        dialog = wx.FileDialog(self, title, style=wx.FD_OPEN)
         dialog.SetWildcard("%s (*.png)|*.png|%s (*.*)|*.*" % (lang.DEP_PNG_FILES, lang.DEP_ALL_FILES))
         dialog.SetDirectory(config.getHomeDir())
         if dialog.ShowModal() == wx.ID_OK:
@@ -1637,7 +1637,7 @@ class ChatWindow(wx.Frame):
 
     def onSendFile(self, evt):
         title = lang.DFT_FILE_OPEN_TITLE % self.buddy.getAddressAndDisplayName()
-        dialog = wx.FileDialog(self, title, style=wx.OPEN)
+        dialog = wx.FileDialog(self, title, style=wx.FD_OPEN)
         dialog.SetDirectory(config.getHomeDir())
         if dialog.ShowModal() == wx.ID_OK:
             file_name = dialog.GetPath()
@@ -1973,7 +1973,7 @@ class FileTransferWindow(wx.Frame):
 
     def onSave(self, evt):
         title = lang.DFT_FILE_SAVE_TITLE % self.buddy.getAddressAndDisplayName()
-        dialog = wx.FileDialog(self, title, defaultFile=self.file_name, style=wx.SAVE)
+        dialog = wx.FileDialog(self, title, defaultFile=self.file_name, style=wx.FD_SAVE)
         if config.isPortable():
             dialog.SetDirectory(config.getDataDir())
         else:
